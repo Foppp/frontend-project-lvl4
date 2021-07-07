@@ -1,6 +1,7 @@
 // @ts-check
 
 const path = require('path');
+// eslint-disable-next-line import/no-extraneous-dependencies
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const mode = process.env.NODE_ENV || 'development';
@@ -39,6 +40,15 @@ module.exports = {
           { loader: 'postcss-loader' },
           { loader: 'sass-loader' },
         ],
+      },
+      {
+        test: /\.(png|svg|jpe?g|gif)$/,
+        include: /images/,
+        use: [
+          {
+            loader: 'file-loader',
+          }
+        ]
       },
     ],
   },
