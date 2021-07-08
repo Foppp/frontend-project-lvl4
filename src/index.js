@@ -1,10 +1,9 @@
 // @ts-check
+import '../assets/application.scss';
 
 import 'core-js/stable/index.js';
 import 'regenerator-runtime/runtime.js';
-import '../assets/application.scss';
-import 'bootstrap';
-// import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap';
 /* eslint-disable no-underscore-dangle */
 import React from 'react';
 import { render } from 'react-dom';

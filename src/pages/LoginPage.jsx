@@ -1,27 +1,54 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState, useRef } from 'react';
 import { useFormik } from 'formik';
+import { useLocation, useHistory } from 'react-router-dom';
+import useAuth from '../hooks/index';
 import * as Yup from 'yup';
+import cn from 'classnames';
 import Hexlet from '../images/hexlet.png';
+// import routes from '../routes';
 
 const LoginPage = () => {
+  const inputFocus = useRef(null);
+  useEffect(() => {
+    inputFocus.current.focus();
+  }, []);
+  const [error, setError] = useState(false);
+  const history = useHistory();
+  const location = useLocation();
+  const auth = useAuth();
+
+
+  const handleSubmit = async (data) => {
+    try {
+      const response = await axios.post('/api/v1/login', data);
+      localStorage.setItem('userId', JSON.stringify(response.data));
+      auth.logIn();
+      const { from } = location.state || { from: { pathname: '/' } };
+      history.replace(from);
+    } catch (e) {
+      setError(true)
+    }
+  };
+
   const formik = useFormik({
     initialValues: {
-      userName: '',
+      username: '',
       password: '',
     },
     onSubmit: values => {
-      alert(JSON.stringify(values, null, 2));
+      handleSubmit(values);
     },
     validationSchema: Yup.object().shape({
-    userName: Yup.string()
-      .min(2, 'Too Short!')
-      .max(50, 'Too Long!')
+    username: Yup.string()
       .required('Required'),
     password: Yup.string()
-      .min(2, 'Too Short!')
-      .max(50, 'Too Long!')
       .required('Required'),
- }),
+    }),
+  });
+  const className = cn({
+    'form-control': true,
+    'is-invalid': error,
   });
   return (
     <div className="container-fluid h-100">
@@ -32,42 +59,41 @@ const LoginPage = () => {
               <div className="col-12 col-md-6 d-flex align-items-center justify-content-center">
                 <img src={Hexlet} alt="logo" className="col-12 col-md-10 d-flex"></img>
               </div>
-              <form className="col-12 col-md-6 mt-3 mt-mb-0 needs-validation" onSubmit={formik.handleSubmit} noValidate>
+              <form className="col-12 col-md-6 mt-3 mt-mb-0" onSubmit={formik.handleSubmit}>
+                <h1 className="text-center mb-4">Sign In</h1>
                 <div className="form-floating mb-3 form-group">
                   <input
-                    name="userName"
+                    ref={inputFocus}
+                    name="username"
                     autoComplete="username"
-                    required
-                    placeholder="Nickname"
+                    required=""
+                    placeholder="Ваш ник"
                     type="text"
                     id="username"
-                    className="form-control"
+                    className={className}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    value={formik.values.userName}
+                    value={formik.values.username}
                   />
-                  {formik.errors.userName && formik.touched.userName? (
-                    <div className="invalid-feedback">{formik.errors.userName}</div>
-                  ) : null}
+                  <label htmlFor="username">Nickname</label>
                 </div>
-                  <div className="form-floating mb-4 form-group">
+                <div className="form-floating mb-4 form-group">
                   <input
                     name="password"
                     autoComplete="current-password"
-                    required
-                    placeholder="Password"
-                    type="password"
+                    required=""
+                    placeholder="Пароль"
+                    type="text"
                     id="password"
-                    className="form-control"
+                    className={className}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.password}
                   />
-                  {formik.errors.password && formik.touched.password? (
-                    <div className="invalid-tooltip">{formik.errors.password}</div>
-                  ) : null}
+                  <label htmlFor="username">Password</label>
+                  <div className="invalid-tooltip">Incorrect Username or Password</div>
                 </div>
-                <button type="submit" className="w-100 mb-3 btn btn-outline-primary">Log In</button>
+                <button type="submit" className="w-100 mb-3 btn btn-outline-primary">Sign in</button>
               </form>
             </div>
             <div className="card-footer p-4">

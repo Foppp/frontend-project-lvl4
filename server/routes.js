@@ -91,7 +91,6 @@ export default (app, defaultState = {}) => {
     const username = _.get(req, 'body.username');
     const password = _.get(req, 'body.password');
     const user = state.users.find((u) => u.username === username);
-
     if (!user || user.password !== password) {
       reply.send(new Unauthorized());
       return;
