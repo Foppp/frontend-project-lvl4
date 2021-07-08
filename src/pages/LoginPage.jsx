@@ -93,7 +93,7 @@ const LoginPage = () => {
                   <label htmlFor="username">Password</label>
                   <div className="invalid-tooltip">Incorrect Username or Password</div>
                 </div>
-                <button type="submit" className="w-100 mb-3 btn btn-outline-primary">Sign in</button>
+                <button type="submit" className="w-100 mb-3 mt-3 btn btn-outline-primary">Sign in</button>
               </form>
             </div>
             <div className="card-footer p-4">
