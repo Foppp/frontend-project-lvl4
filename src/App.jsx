@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react';
-// import '../assets/application.scss';
 
 import {
   BrowserRouter as Router,
@@ -8,7 +7,7 @@ import {
   Link,
   Redirect,
 } from "react-router-dom"
-
+import Hexlet from './images/hexlet.png'
 import Login from './pages/LoginPage';
 import HomePage from './pages/HomePage';
 import PageNotFound from './pages/PageNotFound';
@@ -46,9 +45,12 @@ const App = () => {
     <AuthProvider>
     <Router>
       <div className="d-flex flex-column h-100">
-        <nav className="shadow-sm navbar navbar-expand-lg navbar-light bg-white rounded">
-          <div className="container">
-            <a className="navbar-brand" href="/">Hexlet Chat</a>
+        <nav className="shadow-sm navbar navbar-expand-lg navbar-light bg-white">
+            <div className="container">
+              <a className="navbar-brand" href="/">
+                <img src={Hexlet} alt="" width="30" height="30" className="d-inline-block align-text-top" />
+                Hexlet Chat
+              </a>
           </div>
         </nav>
         <Switch>

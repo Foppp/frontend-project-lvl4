@@ -60,7 +60,7 @@ const LoginPage = () => {
                 <img src={Hexlet} alt="logo" className="col-12 col-md-10 d-flex"></img>
               </div>
               <form className="col-12 col-md-6 mt-3 mt-mb-0" onSubmit={formik.handleSubmit}>
-                <h1 className="text-center mb-4">Sign In</h1>
+                <h1 className="text-center mb-4">Log In</h1>
                 <div className="form-floating mb-3 form-group">
                   <input
                     ref={inputFocus}
@@ -83,7 +83,7 @@ const LoginPage = () => {
                     autoComplete="current-password"
                     required=""
                     placeholder="Пароль"
-                    type="text"
+                    type="password"
                     id="password"
                     className={className}
                     onChange={formik.handleChange}
