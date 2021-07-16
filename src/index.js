@@ -1,24 +1,25 @@
 // @ts-check
 import '../assets/application.scss';
-
 import 'core-js/stable/index.js';
 import 'regenerator-runtime/runtime.js';
-// import 'bootstrap';
 /* eslint-disable no-underscore-dangle */
 import React from 'react';
 import { render } from 'react-dom';
-// import { createStore } from 'redux';
-// import { Provider } from 'react-redux';
+import { Provider } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import store from './redux/store.js'
 import App from './App.jsx';
+import { fetchChatData } from './redux/user.js';
 
-// const EXTENSION = window.__REDUX_DEVTOOLS_EXTENSION__;
-// const store = createStore(reducers, EXTENSION && EXTENSION());
-
+// store.dispatch(fetchChatData());
 if (process.env.NODE_ENV !== 'production') {
   localStorage.debug = 'chat:*';
 }
-render(
-    <App />,
+
+  render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById('chat'),
 );
 

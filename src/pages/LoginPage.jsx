@@ -6,7 +6,6 @@ import useAuth from '../hooks/index';
 import * as Yup from 'yup';
 import cn from 'classnames';
 import Hexlet from '../images/hexlet.png';
-// import routes from '../routes';
 
 const LoginPage = () => {
   const inputFocus = useRef(null);

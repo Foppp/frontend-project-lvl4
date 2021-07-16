@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 
 import {
   BrowserRouter as Router,
@@ -15,7 +15,8 @@ import useAuth from './hooks/index';
 import authContext from './contexts/index';
 
 const AuthProvider = ({ children }) => {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const loggedInUser = localStorage.getItem('userId');
+  const [loggedIn, setLoggedIn] = useState(loggedInUser ? true: false);
   const logIn = () => setLoggedIn(true);
   const logOut = () => {
     localStorage.removeItem('userId');
@@ -40,27 +41,25 @@ const PrivateRoute = ({ children, path }) => {
   );
 }
 
-const App = () => {
-  return (
-    <AuthProvider>
+const App = () => (
+  <AuthProvider>
     <Router>
       <div className="d-flex flex-column h-100">
         <NavPanel />
-        <Switch>
+          <Switch>
+            <PrivateRoute exact path="/">
+              <HomePage />
+            </PrivateRoute>
           <Route path="/login">
             <Login />
           </Route>
-            <PrivateRoute exact path="/">
-              <HomePage />
-              </PrivateRoute>
           <Route path="*">
             <PageNotFound />
           </Route>
         </Switch>
       </div>
     </Router>
-    </AuthProvider>
-  );
-};
+  </AuthProvider>
+);
 
 export default App;

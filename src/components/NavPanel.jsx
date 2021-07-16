@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Button } from 'react-bootstrap';
+import useAuth from '../hooks';
+import authContext from '../contexts';
 import Hexlet from '../images/hexlet.png'
 import LogoutButton from './LogoutButton';
 
