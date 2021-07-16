@@ -8,6 +8,11 @@ export const messagesInfo = createSlice({
   initialState: {
     messages: [],
   },
+  reducers: {
+    addMessage: (state, action) => {
+      state.messages = [...state.messages, action.payload];
+    }
+  },
   extraReducers: {
     [setInitialState]: (state, action) => {
       state.messages = action.payload.messages;
@@ -15,4 +20,5 @@ export const messagesInfo = createSlice({
   }
 });
 
+export const { addMessage } = messagesInfo.actions;
 export default messagesInfo.reducer;

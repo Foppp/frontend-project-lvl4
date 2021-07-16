@@ -12,7 +12,7 @@ const HomePage = (props) => {
   const dispatch = useDispatch();
   dispatch(fetchChatData());
   return (
-  <div className="container h-100 my-4 overflow-hidden rounded shadow">
+    <div className="container h-100 my-4 overflow-hidden rounded shadow">
       <div className="row h-100 bg-white flex-md-row">
         <Channels />
         <div className="col p-0 h-100">

@@ -9,14 +9,11 @@ import { Provider } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import store from './redux/store.js'
 import App from './App.jsx';
-import { fetchChatData } from './redux/user.js';
 
-// store.dispatch(fetchChatData());
 if (process.env.NODE_ENV !== 'production') {
   localStorage.debug = 'chat:*';
 }
-
-  render(
+render(
   <Provider store={store}>
     <App />
   </Provider>,

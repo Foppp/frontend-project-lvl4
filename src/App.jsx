@@ -50,13 +50,13 @@ const App = () => (
             <PrivateRoute exact path="/">
               <HomePage />
             </PrivateRoute>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="*">
-            <PageNotFound />
-          </Route>
-        </Switch>
+            <Route path="/login">
+              <Login />
+            </Route>
+            <Route path="*">
+              <PageNotFound />
+            </Route>
+          </Switch>
       </div>
     </Router>
   </AuthProvider>
