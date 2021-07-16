@@ -19,6 +19,7 @@ const InputForm = () => {
       dispatch(addMessage(message));
     });
   }, [])
+  
   const channels = useSelector((state) => state.channelsInfo.channels);
   const channelId = useSelector((state) => state.channelsInfo.currentChannelId);
 
