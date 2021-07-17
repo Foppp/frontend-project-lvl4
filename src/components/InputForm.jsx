@@ -7,7 +7,8 @@ import io from 'socket.io-client';
 import { addMessage } from '../redux/masseges.js';
 
 
-const socketRef = io.connect("ws://localhost:5000");
+const socket = io("http://localhost:5000");
+
 const InputForm = () => {
   const inputFocus = useRef(null);
   const dispatch = useDispatch();
@@ -15,11 +16,11 @@ const InputForm = () => {
     inputFocus.current.focus();
   }, []);
   useEffect(() => {
-    socketRef.on('newMessage', (message) => {
+    socket.on('newMessage', (message) => {
       dispatch(addMessage(message));
-    });
+    })
   }, [])
-  
+
   const channels = useSelector((state) => state.channelsInfo.channels);
   const channelId = useSelector((state) => state.channelsInfo.currentChannelId);
 
@@ -27,7 +28,7 @@ const InputForm = () => {
     const userId = getUserId();
     const username = userId.username;
     const message = { id: _.uniqueId(), body, username, channelId };
-    socketRef.emit('newMessage', message);
+    socket.emit('newMessage', message)
   };
 
   const formik = useFormik({
