@@ -10,15 +10,6 @@ import _ from 'lodash';
 //   return auth;
 // };
 
-// export const fetchChatData = () => (dispatch) => {
-//   const headers = getAuthHeader();
-//   axios.get('/api/v1/data', { headers })
-//     .then((response) => {
-//       dispatch(setInitialState(response.data))
-//     })
-//     .catch((err) => err)
-// };
-
 export const channelsInfo = createSlice({
   name: 'channels',
   initialState: {

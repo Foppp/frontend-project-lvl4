@@ -2,26 +2,22 @@ import React, { useEffect, useRef } from 'react';
 import { FormikContext, useFormik } from 'formik';
 import _ from 'lodash';
 import { useSelector, useDispatch } from 'react-redux';
-import { getUserId } from '../redux/user.js';
+import { getUserId } from '../redux/auth.js';
 import io from 'socket.io-client';
 import { addMessage } from '../redux/masseges.js';
-
-
-
 
 const InputForm = () => {
   const inputFocus = useRef(null);
   const socketRef = useRef();
   const dispatch = useDispatch();
-  useEffect(() => {
-    inputFocus.current.focus();
-  }, []);
+
+  useEffect(() => inputFocus.current.focus(), []);
 
   useEffect(() => {
     socketRef.current = io();
-    socketRef.current.on("connect", () => {
-      console.log(socketRef.current.id);
-    });
+    // socketRef.current.on("connect", () => {
+    //   console.log(socketRef.current.id);
+    // });
     socketRef.current.on('newMessage', (message) => {
       dispatch(addMessage(message));
     })

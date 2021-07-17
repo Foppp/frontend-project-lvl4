@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { fetchChatData } from '../redux/user.js';
+import { fetchChatData } from '../redux/auth.js';
 import { useDispatch } from 'react-redux';
 import InputForm from '../components/InputForm';
 import Channels from '../components/Channels';
