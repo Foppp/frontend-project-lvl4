@@ -59,7 +59,7 @@ const LoginPage = () => {
                 <img src={Hexlet} alt="logo" className="col-12 col-md-10 d-flex"></img>
               </div>
               <form className="col-12 col-md-6 mt-3 mt-mb-0" onSubmit={formik.handleSubmit}>
-                <h3 className="text-center mb-4">Заходи, не ссы!</h3>
+                <h3 className="text-center mb-4">Log In</h3>
                 <div className="form-floating mb-3 form-group">
                   <input
                     ref={inputFocus}
@@ -74,7 +74,7 @@ const LoginPage = () => {
                     onBlur={formik.handleBlur}
                     value={formik.values.username}
                   />
-                  <label htmlFor="username">Кликуха</label>
+                  <label htmlFor="username">Username</label>
                 </div>
                 <div className="form-floating mb-4 form-group">
                   <input
@@ -89,16 +89,16 @@ const LoginPage = () => {
                     onBlur={formik.handleBlur}
                     value={formik.values.password}
                   />
-                  <label htmlFor="username">Пароль</label>
+                  <label htmlFor="username">Password</label>
                   <div className="invalid-tooltip">Ты не прав, чувак!</div>
                 </div>
-                <button type="submit" className="w-100 mb-3 mt-3 btn btn-outline-primary">Ебашь!</button>
+                <button type="submit" className="w-100 mb-3 mt-3 btn btn-outline-primary">Login</button>
               </form>
             </div>
             <div className="card-footer p-4">
               <div className="text-center">
-                <span>Нет аккаунта? </span>
-                <a href="/signup"> Иди на Хрен!</a>
+                <span>Don't have account? </span>
+                <a href="/signup">Register</a>
               </div>
             </div>
           </div>
