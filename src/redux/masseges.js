@@ -19,6 +19,5 @@ export const messagesInfo = createSlice({
   },
   }
 });
-
 export const { addMessage } = messagesInfo.actions;
 export default messagesInfo.reducer;
