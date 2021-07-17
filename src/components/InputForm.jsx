@@ -56,14 +56,14 @@ const InputForm = () => {
             ref={inputFocus}
             name="body"
             data-testid="new-message"
-            placeholder="Type your message here..."
+            placeholder="Пиши маразм тут..."
             className="border-0 p-0 ps-2 form-control"
             onChange={formik.handleChange}
             value={formik.values.body}
           />
           <div className="input-group-append">
             <button disabled="" type="submit" className="btn btn-group-vertical">
-              <span className="">Send</span>
+              <span className="">Бац!</span>
             </button>
           </div>
         </div>

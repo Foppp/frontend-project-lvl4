@@ -6,7 +6,7 @@ const LogoutButton = () => {
   const auth = useContext(authContext);
   return (
     auth.loggedIn
-      ? <Button variant="outline-primary" onClick={auth.logOut}>Log Out</Button>
+      ? <Button variant="outline-primary" onClick={auth.logOut}>Выйти нахрен</Button>
       : null
   );
 };

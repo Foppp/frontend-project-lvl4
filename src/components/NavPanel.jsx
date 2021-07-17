@@ -9,8 +9,8 @@ const NavPanel = () => (
   <nav className="shadow-sm navbar navbar-expand-lg navbar-light bg-white">
     <div className="container">
       <a className="navbar-brand" href="/">
-        <img src={Hexlet} alt="" width="30" height="30" className="d-inline-block align-text-top" />
-        Hexlet Chat
+        <img src={Hexlet} alt="" width="30" height="30" className="d-inline-block align-text-top m-1" />
+        Пастернак - Чат
       </a>
         <LogoutButton />
     </div>
