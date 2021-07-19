@@ -9,8 +9,19 @@ const modal = createSlice({
     type: null,
     extra: null,
   },
-  reducers: {},
+  reducers: {
+    openModal: (state, action) => {
+      state.isOpened = true;
+      state.type = action.payload.type;
+      state.extra = { channelId: action.payload.channelId };
+    },
+    closeModal: (state) => {
+      state.isOpened = false;
+      state.type = null;
+      state.extra = null;
+    }
+  },
 });
 
-export const { } = modal.actions;
+export const { openModal, closeModal } = modal.actions;
 export default modal.reducer;

@@ -42,24 +42,24 @@ const PrivateRoute = ({ children, path }) => {
 }
 
 const App = () => (
-  <AuthProvider>
-    <Router>
-      <div className="d-flex flex-column h-100">
+  <div className="d-flex flex-column h-100">
+    <AuthProvider>
+      <Router>
         <NavPanel />
-          <Switch>
-            <PrivateRoute exact path="/">
-              <HomePage />
-            </PrivateRoute>
-            <Route path="/login">
-              <Login />
-            </Route>
-            <Route path="*">
-              <PageNotFound />
-            </Route>
-          </Switch>
-      </div>
-    </Router>
-  </AuthProvider>
+        <Switch>
+          <PrivateRoute exact path="/">
+            <HomePage />
+          </PrivateRoute>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="*">
+            <PageNotFound />
+          </Route>
+        </Switch>
+      </Router>
+    </AuthProvider>
+  </div>
 );
 
 export default App;

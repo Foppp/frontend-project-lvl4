@@ -90,7 +90,7 @@ const LoginPage = () => {
                     value={formik.values.password}
                   />
                   <label htmlFor="username">Password</label>
-                  <div className="invalid-tooltip">Ты не прав, чувак!</div>
+                  <div className="invalid-tooltip">Username or Password is wrong</div>
                 </div>
                 <button type="submit" className="w-100 mb-3 mt-3 btn btn-outline-primary">Login</button>
               </form>

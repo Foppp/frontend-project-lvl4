@@ -1,16 +1,20 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { fetchChatData } from '../redux/auth.js';
+import { fetchChatData } from '../redux/channels.js';
 import { useDispatch } from 'react-redux';
 import InputForm from '../components/InputForm';
 import Channels from '../components/Channels';
-import MessagesHead from '../components/MessagesTop';
+import MessagesHead from '../components/MessagesHead';
 import MessagesBody from '../components/Messages';
-
+import MainModal from '../components/modal/index.js';
 
 const HomePage = (props) => {
   const dispatch = useDispatch();
-  dispatch(fetchChatData());
+
+  useEffect(() => {
+    dispatch(fetchChatData());
+  }, [])
+  
   return (
     <div className="container h-100 my-4 overflow-hidden rounded shadow">
       <div className="row h-100 bg-white flex-md-row">
@@ -20,6 +24,7 @@ const HomePage = (props) => {
             <MessagesHead />
             <MessagesBody />
             <InputForm />
+            <MainModal />
           </div>
         </div>
       </div>

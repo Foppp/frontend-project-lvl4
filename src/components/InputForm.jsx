@@ -1,30 +1,28 @@
 import React, { useEffect, useRef } from 'react';
-import { FormikContext, useFormik } from 'formik';
+import { useFormik } from 'formik';
 import _ from 'lodash';
 import { useSelector, useDispatch } from 'react-redux';
-import { getUserId } from '../redux/auth.js';
+import { getUserId } from '../redux/user.js';
 import io from 'socket.io-client';
 import { addMessage } from '../redux/masseges.js';
 
+
 const InputForm = () => {
+  const messages = useSelector((state) => state.messagesInfo.messages);
+  const channels = useSelector((state) => state.channelsInfo.channels);
+  const channelId = useSelector((state) => state.channelsInfo.currentChannelId);
   const inputFocus = useRef(null);
   const socketRef = useRef();
   const dispatch = useDispatch();
 
-  useEffect(() => inputFocus.current.focus(), []);
+  useEffect(() => inputFocus.current.focus(), [channelId, messages]);
 
   useEffect(() => {
     socketRef.current = io();
-    // socketRef.current.on("connect", () => {
-    //   console.log(socketRef.current.id);
-    // });
     socketRef.current.on('newMessage', (message) => {
       dispatch(addMessage(message));
     })
-  }, [])
-
-  const channels = useSelector((state) => state.channelsInfo.channels);
-  const channelId = useSelector((state) => state.channelsInfo.currentChannelId);
+  }, []);
 
   const onSubmit = ({ body }) => {
     const userId = getUserId();
@@ -40,7 +38,6 @@ const InputForm = () => {
     onSubmit: (values) => {
       onSubmit(values);
       formik.resetForm();
-      inputFocus.current.focus();
     }
   });
 
