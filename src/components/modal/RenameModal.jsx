@@ -6,54 +6,32 @@ import { Modal, Button, Form, ModalFooter } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { renameChannel } from '../../redux/channels';
 import { closeModal } from '../../redux/modal';
+import { validate } from './schemaValidation';
 
-const Rename = () => {
+const Rename = ({ handleRenameChannel, handleCloseModal }) => {
   const isOpened = useSelector((state) => state.modal.isOpened);
   const channels = useSelector((state) => state.channelsInfo.channels);
   const modalChannelId = useSelector((state) => state.modal.extra.channelId);
   const currentChannelName = channels.find(({ id }) => id === modalChannelId).name;
   const inputRef = useRef();
-  const socketRef = useRef();
-
-  const dispatch = useDispatch();
 
   useEffect(() => inputRef.current.select(), []);
   
-  useEffect(() => {
-    socketRef.current = io();
-    socketRef.current.on('renameChannel', ({ id, name }) => {
-      dispatch(renameChannel({ id, name }));
-    })
-  }, []);
-  
-  const handleRenameChannel = (id, name) => {
-    socketRef.current.emit('renameChannel', { id, name })
-  };
-
   const formik = useFormik({
     initialValues: {
       body: currentChannelName,
     },
     onSubmit: ({ body }) => {
-      dispatch(closeModal())
       handleRenameChannel(modalChannelId, body);
     },
-    validationSchema: Yup.object().shape({
-      body: Yup.string()
-        .min(3, 'From 3 to 20 characters')
-        .max(20, 'From 3 to 20 characters')
-        .test(
-          'is-exist',
-          'This channel name already exist',
-          (value) => !_.some(channels, ['name', value]))
-    }),
+    validationSchema: validate(channels),
   });
   
   return (
-    <Modal show={isOpened} onHide={() => dispatch(closeModal())}>
+    <Modal show={isOpened} onHide={handleCloseModal}>
       <Modal.Header>
         <Modal.Title>Rename Channel</Modal.Title>
-        <Button variant="close" onClick={() => dispatch(closeModal())}></Button>
+        <Button variant="close" onClick={handleCloseModal}></Button>
       </Modal.Header>
       <Modal.Body>
         <Form>
@@ -75,7 +53,7 @@ const Rename = () => {
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={() => dispatch(closeModal())}>
+        <Button variant="secondary" onClick={handleCloseModal}>
           Close
         </Button>
         <Button variant="primary" type="submit" onClick={formik.handleSubmit}>

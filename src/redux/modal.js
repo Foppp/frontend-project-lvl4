@@ -1,7 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { addChannel, removeChannel, renameChannel } from "./channels.js";
-// import axios from 'axios';
-// import _ from 'lodash';
 
 const modal = createSlice({
   name: 'modal',

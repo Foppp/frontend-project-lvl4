@@ -5,6 +5,7 @@ import { Modal, Button, Form, ModalFooter } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { addChannel, setCurrentChannel } from '../../redux/channels';
 import { closeModal } from '../../redux/modal';
+import { validate } from './schemaValidation';
 
 const Add = ({ handleAddChannel }) => {
   const isOpened = useSelector((state) => state.modal.isOpened);
@@ -22,15 +23,7 @@ const Add = ({ handleAddChannel }) => {
     onSubmit: ({ body }) => {
       handleAddChannel(body)
     },
-    validationSchema: Yup.object().shape({
-      body: Yup.string()
-        .min(3, 'From 3 to 20 characters')
-        .max(20, 'From 3 to 20 characters')
-        .test(
-          'is-exist',
-          '${path} channel already exist',
-          (value) => !_.some(channels, ['name', value]))
-     }),
+    validationSchema: validate(channels),
   });
   
   return (

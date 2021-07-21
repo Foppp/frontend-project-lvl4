@@ -1,8 +1,8 @@
 import React, { useEffect , useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import io from 'socket.io-client';
-
-import { addChannel, setCurrentChannel } from '../../redux/channels.js';
+import _ from 'lodash';
+import { addChannel, removeChannel, renameChannel, setCurrentChannel } from '../../redux/channels.js';
 import { closeModal } from '../../redux/modal.js';
 import Add from './AddModal.jsx';
 import Remove from './RemoveModal.jsx';
@@ -15,38 +15,58 @@ const modals = {
 };
 
 const Modal = () => {
-  // const isOpened = useSelector((state) => state.modal.isOpened);
-  // const channels = useSelector((state) => state.channelsInfo.channels);
-  // const inputRef = useRef(null);
+  const isOpened = useSelector((state) => state.modal.isOpened);
+  const channels = useSelector((state) => state.channelsInfo.channels);
+  const defaultChannelId = _.get(_.head(channels), 'id', null);
+  const modalType = useSelector((state) => state.modal.type);
   const socketRef = useRef(null);
   const dispatch = useDispatch();
 
-  // useEffect(() => inputRef.current.focus(), []);
-  
+  const Component = modals[modalType];
+
   useEffect(() => {
     socketRef.current = io();
     socketRef.current.on('newChannel', (channel) => {
       dispatch(setCurrentChannel(channel.id))
       dispatch(addChannel(channel));
-    })
-  }, [addChannel]);
+    });
+    socketRef.current.on('removeChannel', ({ id }) => {
+      dispatch(setCurrentChannel(defaultChannelId))
+      dispatch(removeChannel({ id }));
+    });
+    socketRef.current.on('renameChannel', ({ id, name }) => {
+      dispatch(renameChannel({ id, name }));
+    });
+  }, []);
 
-  const modalType = useSelector((state) => state.modal.type);
-  const Component = modals[modalType];
-  // const handleCloseModal = () => {
-  //   dispatch(closeModal())
-  // };
+  const handleCloseModal = () => {
+    dispatch(closeModal())
+  };
   const handleAdd = (body) => {
     socketRef.current.emit('newChannel', { name: body });
-    // dispatch(closeModal());
+  };
+
+  const handleRename = (id, name) => {
+    socketRef.current.emit('renameChannel', { id, name })
+  };
+
+  const handleRemove = (id) => () => {
+    dispatch(removeChannel({ id }));
+    dispatch(setCurrentChannel(defaultChannelId))
+    socketRef.current.emit('removeChannel', { id });
   };
 
   return (
     <>
-      {modalType && <Component handleAddChannel={handleAdd}/>}
+      {modalType && <Component
+        isOpened={isOpened}
+        handleAddChannel={handleAdd}
+        handleRenameChannel={handleRename}
+        handleRemoveChannel={handleRemove}
+        handleCloseModal={handleCloseModal}
+      />}
     </>
   );
 }
 
 export default Modal;
-//export default (modalType) => modals[modalType];

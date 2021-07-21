@@ -11,7 +11,7 @@ import ModalComponent from '../components/modal/index.js';
 const HomePage = (props) => {
   const dispatch = useDispatch();
   const modalType = useSelector((state) => state.modal.type);
-  // const ModalComponent = getModal(modalType);
+  
   useEffect(() => {
     dispatch(fetchChatData());
   }, [])
