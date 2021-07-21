@@ -1,13 +1,12 @@
 import React, { useEffect, useRef } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import io from 'socket.io-client';
 import { Modal, Button, Form, ModalFooter } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { addChannel, setCurrentChannel } from '../../redux/channels';
 import { closeModal } from '../../redux/modal';
 
-const Add = () => {
+const Add = ({ handleAddChannel }) => {
   const isOpened = useSelector((state) => state.modal.isOpened);
   const channels = useSelector((state) => state.channelsInfo.channels);
   const inputRef = useRef(null);
@@ -15,22 +14,13 @@ const Add = () => {
   const dispatch = useDispatch();
 
   useEffect(() => inputRef.current.focus(), []);
-  
-  useEffect(() => {
-    socketRef.current = io();
-    socketRef.current.on('newChannel', (channel) => {
-      dispatch(setCurrentChannel(channel.id))
-      dispatch(addChannel(channel));
-    })
-  }, [addChannel]);
 
   const formik = useFormik({
     initialValues: {
       body: '',
     },
     onSubmit: ({ body }) => {
-      socketRef.current.emit('newChannel', { name: body });
-      dispatch(closeModal());
+      handleAddChannel(body)
     },
     validationSchema: Yup.object().shape({
       body: Yup.string()

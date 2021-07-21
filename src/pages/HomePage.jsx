@@ -6,12 +6,12 @@ import InputForm from '../components/InputForm';
 import Channels from '../components/Channels';
 import MessagesHead from '../components/MessagesHead';
 import MessagesBody from '../components/Messages';
-import getModal from '../components/modal/index.js';
+import ModalComponent from '../components/modal/index.js';
 
 const HomePage = (props) => {
   const dispatch = useDispatch();
   const modalType = useSelector((state) => state.modal.type);
-  const ModalComponent = getModal(modalType);
+  // const ModalComponent = getModal(modalType);
   useEffect(() => {
     dispatch(fetchChatData());
   }, [])
@@ -25,7 +25,7 @@ const HomePage = (props) => {
             <MessagesHead />
             <MessagesBody />
             <InputForm />
-            {modalType && <ModalComponent />}
+            <ModalComponent />
           </div>
         </div>
       </div>

@@ -32,7 +32,7 @@ const Channels = () => {
           <span className="">+</span>
         </button>
       </div>
-      {/* <ul className="nav flex-column nav-pills nav-fill px-2">
+      <ul className="nav flex-column nav-pills nav-fill px-2">
         {channels.map(({ id, name, removable }) => {
           
           const classUnremovable = cn({
@@ -82,7 +82,7 @@ const Channels = () => {
             </li>
           )
         })}
-      </ul> */}
+      </ul>
     </div>
   );
 };

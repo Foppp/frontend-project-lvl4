@@ -24,6 +24,23 @@ const modal = createSlice({
       state.extra = null;
     }
   },
+  extraReducers: {
+    [addChannel]: (state) => {
+      state.isOpened = false;
+      state.type = null;
+      state.extra = null;
+    },
+    [removeChannel]: (state) => {
+      state.isOpened = false;
+      state.type = null;
+      state.extra = null;
+    },
+    [renameChannel]: (state) => {
+      state.isOpened = false;
+      state.type = null;
+      state.extra = null;
+    }
+  }
 });
 
 export const { openModal, closeModal } = modal.actions;
