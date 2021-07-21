@@ -20,8 +20,8 @@ export const channelsInfo = createSlice({
   },
   reducers: {
     setInitialState: (state, action) => {
-    state.channels = action.payload.channels;
-    state.currentChannelId = action.payload.currentChannelId;
+      state.channels = action.payload.channels;
+      state.currentChannelId = action.payload.currentChannelId;
     },
     setCurrentChannel: (state, action) => {
       state.currentChannelId = action.payload;
@@ -30,7 +30,7 @@ export const channelsInfo = createSlice({
       state.channels = [...state.channels, action.payload];
     },
     removeChannel: (state, action) => {
-      state.channels = state.channels.filter((ch) => ch.id !== action.payload)
+      state.channels = state.channels.filter((ch) => ch.id !== action.payload.id)
     },
     renameChannel: (state, action) => {
       const newName = action.payload.name;

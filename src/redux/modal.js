@@ -1,6 +1,7 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from 'axios';
-import _ from 'lodash';
+import { createSlice } from "@reduxjs/toolkit";
+import { addChannel, removeChannel, renameChannel } from "./channels.js";
+// import axios from 'axios';
+// import _ from 'lodash';
 
 const modal = createSlice({
   name: 'modal',
@@ -13,7 +14,9 @@ const modal = createSlice({
     openModal: (state, action) => {
       state.isOpened = true;
       state.type = action.payload.type;
-      state.extra = { channelId: action.payload.channelId };
+      if (action.payload.type === 'removeChannel' || action.payload.type === 'renameChannel') {
+        state.extra = { channelId: action.payload.channelId };
+      }
     },
     closeModal: (state) => {
       state.isOpened = false;

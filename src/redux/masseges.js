@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from 'axios';
 import _ from 'lodash';
-import { setInitialState } from "./channels.js";
+import { setInitialState, removeChannel } from "./channels.js";
 
 export const messagesInfo = createSlice({
   name: 'messages',
@@ -16,7 +16,10 @@ export const messagesInfo = createSlice({
   extraReducers: {
     [setInitialState]: (state, action) => {
       state.messages = action.payload.messages;
-  },
+    },
+    [removeChannel]: (state, action) => {
+      state.messages = state.messages.filter((m) => m.channelId !== action.payload.id)
+    },
   }
 });
 export const { addMessage } = messagesInfo.actions;

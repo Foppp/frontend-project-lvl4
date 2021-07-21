@@ -7,18 +7,22 @@ import { openModal, closeModal } from '../redux/modal';
 const Channels = () => {
   const channels = useSelector((state) => state.channelsInfo.channels);
   const currentChannelId = useSelector((state) => state.channelsInfo.currentChannelId);
-  const [showDropDown, setShowDropDown] = useState(false);
+  const [activeDropDown, setActiveDropDown] = useState(null);
   const dispatch = useDispatch();
 
   const handleSetCurrentChannel = (id) => () => {
     dispatch(setCurrentChannel(id));
-    setShowDropDown(false)
+    setActiveDropDown(null)
   };
 
   const handleOpenModal = (type, channelId = null) => () => {
     dispatch(openModal({ type, channelId }));
-    setShowDropDown(false)
-  }
+    setActiveDropDown(null)
+  };
+
+  const handleDropDown = (id) => {
+    setActiveDropDown(!activeDropDown ? id : null);
+  };
 
   return (
     <div className="col-4 col-md-2 border-end pt-5 px-0 bg-light">
@@ -28,11 +32,11 @@ const Channels = () => {
           <span className="">+</span>
         </button>
       </div>
-      <ul className="nav flex-column nav-pills nav-fill px-2">
+      {/* <ul className="nav flex-column nav-pills nav-fill px-2">
         {channels.map(({ id, name, removable }) => {
-
+          
           const classUnremovable = cn({
-            'w-100 rounded-start text-start btn': true,
+            'w-100 rounded-start text-start text-truncate btn': true,
             'btn-secondary': id === currentChannelId,
           });
 
@@ -43,8 +47,8 @@ const Channels = () => {
 
           const classDropDown = cn({
             "dropdown-menu mt-5 ms-5": true,
-            show: showDropDown,
-          })
+            show: activeDropDown === id,
+          });
 
           return (
             <li className="nav-item w-100" key={id}>
@@ -64,7 +68,7 @@ const Channels = () => {
                       className={classRemovable}
                       data-bs-toggle="dropdown"
                       aria-expanded="false"
-                      onClick={() => setShowDropDown(!showDropDown)}
+                      onClick={() => handleDropDown(id)}
                     >
                       <span className="visually-hidden">Toggle Dropdown</span>
                     </button>
@@ -78,7 +82,7 @@ const Channels = () => {
             </li>
           )
         })}
-      </ul>
+      </ul> */}
     </div>
   );
 };

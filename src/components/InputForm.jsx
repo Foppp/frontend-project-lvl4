@@ -27,7 +27,8 @@ const InputForm = () => {
   const onSubmit = ({ body }) => {
     const userId = getUserId();
     const username = userId.username;
-    const message = { id: _.uniqueId(), body, username, channelId };
+    const id = _.uniqueId();
+    const message = { id, body, username, channelId };
     socketRef.current.emit('newMessage', message)
   };
 
