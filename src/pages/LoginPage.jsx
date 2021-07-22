@@ -51,7 +51,7 @@ const LoginPage = () => {
     'form-control': true,
     'is-invalid': error,
   });
-  
+
   return (
     <div className="container-fluid h-100">
       <div className="row justify-content-center align-content-center h-100">
@@ -68,7 +68,7 @@ const LoginPage = () => {
                     ref={inputFocus}
                     name="username"
                     autoComplete="username"
-                    required=""
+                    required
                     placeholder="Ваш ник"
                     type="text"
                     id="username"
@@ -83,7 +83,7 @@ const LoginPage = () => {
                   <input
                     name="password"
                     autoComplete="current-password"
-                    required=""
+                    required
                     placeholder="Пароль"
                     type="password"
                     id="password"
@@ -95,7 +95,7 @@ const LoginPage = () => {
                   <label htmlFor="username">Password</label>
                   <div className="invalid-tooltip">Username or Password is wrong</div>
                 </div>
-                <button type="submit" className="w-100 mb-3 mt-3 btn btn-outline-primary">Login</button>
+                <button type="submit" className="w-100 mb-3 mt-3 btn btn-outline-primary" disabled={formik.isSubmitting}>Login</button>
               </form>
             </div>
             <div className="card-footer p-4">
