@@ -31,7 +31,6 @@ const Modal = () => {
       dispatch(addChannel(channel));
     });
     socketRef.current.on('removeChannel', ({ id }) => {
-      dispatch(setCurrentChannel(defaultChannelId))
       dispatch(removeChannel({ id }));
     });
     socketRef.current.on('renameChannel', ({ id, name }) => {
@@ -42,16 +41,16 @@ const Modal = () => {
   const handleCloseModal = () => {
     dispatch(closeModal())
   };
-  const handleAdd = (body) => {
+
+  const handleAddChannel = (body) => {
     socketRef.current.emit('newChannel', { name: body });
   };
 
-  const handleRename = (id, name) => {
+  const handleRenameChannel = (id, name) => {
     socketRef.current.emit('renameChannel', { id, name })
   };
 
-  const handleRemove = (id) => () => {
-    dispatch(removeChannel({ id }));
+  const handleRemoveChannel = (id) => () => {
     dispatch(setCurrentChannel(defaultChannelId))
     socketRef.current.emit('removeChannel', { id });
   };
@@ -60,10 +59,10 @@ const Modal = () => {
     <>
       {modalType && <Component
         isOpened={isOpened}
-        handleAddChannel={handleAdd}
-        handleRenameChannel={handleRename}
-        handleRemoveChannel={handleRemove}
-        handleCloseModal={handleCloseModal}
+        addNewChannel={handleAddChannel}
+        renameChannel={handleRenameChannel}
+        removeChannel={handleRemoveChannel}
+        closeModal={handleCloseModal}
       />}
     </>
   );

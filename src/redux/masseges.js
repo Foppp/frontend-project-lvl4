@@ -1,6 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from 'axios';
-import _ from 'lodash';
+import { createSlice } from "@reduxjs/toolkit";
 import { setInitialState, removeChannel } from "./channels.js";
 
 export const messagesInfo = createSlice({
@@ -22,5 +20,6 @@ export const messagesInfo = createSlice({
     },
   }
 });
+
 export const { addMessage } = messagesInfo.actions;
 export default messagesInfo.reducer;

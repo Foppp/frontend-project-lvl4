@@ -1,15 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from 'axios';
-import _ from 'lodash';
 import { getAuthHeader } from "./user.js";
 
-export const fetchChatData = () => (dispatch) => {
+export const fetchChatData = () => async (dispatch) => {
   const headers = getAuthHeader();
-  axios.get('/api/v1/data', { headers })
-    .then((response) => {
-      dispatch(setInitialState(response.data))
-    })
-    .catch((err) => err)
+  try {
+    const response = await axios.get('/api/v1/data', { headers });
+    dispatch(setInitialState(response.data))
+  } catch (err) {
+    return err;
+  }
 };
 
 export const channelsInfo = createSlice({

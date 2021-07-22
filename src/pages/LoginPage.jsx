@@ -8,10 +8,11 @@ import cn from 'classnames';
 import Hexlet from '../images/hexlet.png';
 
 const LoginPage = () => {
+
   const inputFocus = useRef(null);
-  useEffect(() => {
-    inputFocus.current.focus();
-  }, []);
+
+  useEffect(() => inputFocus.current.focus(), []);
+
   const [error, setError] = useState(false);
   const history = useHistory();
   const location = useLocation();
@@ -45,10 +46,12 @@ const LoginPage = () => {
       .required('Required'),
     }),
   });
+
   const className = cn({
     'form-control': true,
     'is-invalid': error,
   });
+  
   return (
     <div className="container-fluid h-100">
       <div className="row justify-content-center align-content-center h-100">
@@ -97,7 +100,7 @@ const LoginPage = () => {
             </div>
             <div className="card-footer p-4">
               <div className="text-center">
-                <span>Don't have account? </span>
+                <span>Do not have account? </span>
                 <a href="/signup">Register</a>
               </div>
             </div>

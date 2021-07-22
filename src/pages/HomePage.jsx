@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { fetchChatData } from '../redux/channels.js';
 import { useSelector, useDispatch } from 'react-redux';
 import InputForm from '../components/InputForm';

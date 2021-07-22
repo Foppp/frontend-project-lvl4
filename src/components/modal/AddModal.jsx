@@ -1,13 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import { useFormik } from 'formik';
-import * as Yup from 'yup';
 import { Modal, Button, Form, ModalFooter } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
-import { addChannel, setCurrentChannel } from '../../redux/channels';
-import { closeModal } from '../../redux/modal';
 import { validate } from './schemaValidation';
 
-const Add = ({ handleAddChannel }) => {
+const Add = ({ addNewChannel, closeModal }) => {
   const isOpened = useSelector((state) => state.modal.isOpened);
   const channels = useSelector((state) => state.channelsInfo.channels);
   const inputRef = useRef(null);
@@ -21,16 +18,16 @@ const Add = ({ handleAddChannel }) => {
       body: '',
     },
     onSubmit: ({ body }) => {
-      handleAddChannel(body)
+      addNewChannel(body)
     },
     validationSchema: validate(channels),
   });
   
   return (
-    <Modal show={isOpened} onHide={() => dispatch(closeModal())}>
+    <Modal show={isOpened} onHide={closeModal}>
       <Modal.Header>
         <Modal.Title>Add Channel</Modal.Title>
-        <Button variant="close" onClick={() => dispatch(closeModal())}></Button>
+        <Button variant="close" onClick={closeModal}></Button>
       </Modal.Header>
       <Modal.Body>
         <Form>
@@ -52,7 +49,7 @@ const Add = ({ handleAddChannel }) => {
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={() => dispatch(closeModal())}>
+        <Button variant="secondary" onClick={closeModal}>
           Close
         </Button>
         <Button variant="primary" type="submit" onClick={formik.handleSubmit}>
