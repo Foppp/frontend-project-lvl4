@@ -6,6 +6,6 @@ export const validate = (channels) => Yup.object().shape({
     .max(20, 'From 3 to 20 characters')
     .test(
       'is-exist',
-      '${path} channel already exist',
+      'This channel name already exist',
       (value) => !_.some(channels, ['name', value]))
 });

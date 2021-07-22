@@ -37,7 +37,6 @@ const Rename = ({ renameChannel, closeModal }) => {
               required
               ref={inputRef}
               onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
               value={formik.values.body}
               data-testid="input-body"
               name="body"
