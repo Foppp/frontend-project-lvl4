@@ -6,8 +6,8 @@ const MessagesBody = () => {
   const messages = useSelector((state) => state.messagesInfo.messages);
   const currentChannelId = useSelector((state) => state.channelsInfo.currentChannelId);
   const currentChannelMessages = messages.filter(({ channelId }) => channelId === currentChannelId);
-
-  useEffect(() => divRef.current.scrollIntoView({ behavior: 'smooth' }), [messages]);
+  
+  useEffect(() => setTimeout(() => divRef.current.scrollIntoView({ behavior: 'smooth' }), 0), [messages, divRef]);
 
   return (
     <div id="messages-box" className="chat-messages overflow-auto px-5 ">

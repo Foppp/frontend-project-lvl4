@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import InputForm from '../components/InputForm';
 import Channels from '../components/Channels';
 import MessagesHead from '../components/MessagesHead';
-import MessagesBody from '../components/Messages';
+import MessagesBody from '../components/MessagesBody';
 import ModalComponent from '../components/modal/index.js';
 
 const HomePage = (props) => {
