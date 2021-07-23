@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState, useRef } from 'react';
 import { useFormik } from 'formik';
 import { useLocation, useHistory } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import _ from 'lodash';
 import useAuth from '../hooks/index';
 import * as Yup from 'yup';
@@ -9,7 +10,7 @@ import cn from 'classnames';
 import Hexlet from '../images/hexlet.png';
 
 const SignupPage = () => {
-
+  const { t } = useTranslation();
   const inputFocus = useRef(null);
 
   useEffect(() => inputFocus.current.focus(), []);
@@ -32,10 +33,10 @@ const SignupPage = () => {
     } catch (e) {
       setSignupStatus('rejected');
       if (e.response.status === 409) {
-        setSignupError('User with this name already exist');
+        setSignupError(t('errors.userExist'));
         return;
       }
-        setSignupError(e.message);
+        setSignupError('errors.unknown');
     }
   };
 
@@ -81,7 +82,7 @@ const SignupPage = () => {
                 <img src={Hexlet} alt="logo" className="col-12 col-md-10 d-flex w-75"></img>
               </div>
               <form className="col-12 col-md-6 mt-3 mt-mb-0" onSubmit={formik.handleSubmit}>
-                <h3 className="text-center mb-4">Sign Up</h3>
+                <h3 className="text-center mb-4">{t('signUp.title')}</h3>
                 <div className="form-floating mb-4 form-group">
                   <input
                     ref={inputFocus}
@@ -97,7 +98,7 @@ const SignupPage = () => {
                     value={formik.values.username}
                     disabled={signupStatus === 'pending'}
                   />
-                  <label htmlFor="username">Username</label>
+                  <label htmlFor="username">{t('signUp.userName')}</label>
                   <div className="invalid-tooltip">{signupError || formik.errors.username}</div>
                 </div>
                 <div className="form-floating mb-4 form-group">
@@ -114,7 +115,7 @@ const SignupPage = () => {
                     value={formik.values.password}
                     disabled={signupStatus === 'pending'}
                   />
-                  <label htmlFor="username">Password</label>
+                  <label htmlFor="username">{t('signUp.password')}</label>
                   <div className="invalid-tooltip">{formik.errors.password}</div>
                   <div className="invalid-tooltip">{formik.errors.password}</div>
                 </div>
@@ -132,10 +133,10 @@ const SignupPage = () => {
                     value={formik.values.confirmPassword}
                     disabled={signupStatus === 'pending'}
                   />
-                  <label htmlFor="username">Confirm password</label>
+                  <label htmlFor="username">{t('signUp.confirmPassword')}</label>
                   <div className="invalid-tooltip">{formik.errors.confirmPassword}</div>
                 </div>
-                <button type="submit" className="w-100 mb-3 mt-3 btn btn-outline-primary" disabled={signupStatus === 'pending'}>SignUp</button>
+                <button type="submit" className="w-100 mb-3 mt-3 btn btn-outline-primary" disabled={signupStatus === 'pending'}>{t('buttons.signUpButton')}</button>
               </form>
             </div>
           </div>

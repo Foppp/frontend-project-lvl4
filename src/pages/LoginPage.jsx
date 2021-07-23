@@ -2,13 +2,14 @@ import axios from 'axios';
 import React, { useEffect, useState, useRef } from 'react';
 import { useFormik } from 'formik';
 import { useLocation, useHistory } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import useAuth from '../hooks/index';
 import * as Yup from 'yup';
 import cn from 'classnames';
 import Hexlet from '../images/hexlet.png';
 
 const LoginPage = () => {
-
+  const { t } = useTranslation();
   const inputFocus = useRef(null);
 
   useEffect(() => inputFocus.current.focus(), []);
@@ -66,7 +67,7 @@ const LoginPage = () => {
                 <img src={Hexlet} alt="logo" className="col-12 col-md-10 d-flex w-75"></img>
               </div>
               <form className="col-12 col-md-6 mt-3 mt-mb-0" onSubmit={formik.handleSubmit}>
-                <h3 className="text-center mb-4">Log In</h3>
+                <h3 className="text-center mb-4">{t('logIn.title')}</h3>
                 <div className="form-floating mb-3 form-group">
                   <input
                     ref={inputFocus}
@@ -82,7 +83,7 @@ const LoginPage = () => {
                     value={formik.values.username}
                     disabled={loginStatus === 'pending'}
                   />
-                  <label htmlFor="username">Username</label>
+                  <label htmlFor="username">{t('logIn.userName')}</label>
                 </div>
                 <div className="form-floating mb-4 form-group">
                   <input
@@ -98,16 +99,16 @@ const LoginPage = () => {
                     value={formik.values.password}
                     disabled={loginStatus === 'pending'}
                   />
-                  <label htmlFor="username">Password</label>
-                  <div className="invalid-tooltip">Username or Password is wrong</div>
+                  <label htmlFor="username">{t('logIn.password')}</label>
+                  <div className="invalid-tooltip">{t('errors.wrongUsername')}</div>
                 </div>
-                <button type="submit" className="w-100 mb-3 mt-3 btn btn-outline-primary" disabled={loginStatus === 'pending'}>Login</button>
+                <button type="submit" className="w-100 mb-3 mt-3 btn btn-outline-primary" disabled={loginStatus === 'pending'}>{t('buttons.logInButton')}</button>
               </form>
             </div>
             <div className="card-footer p-4">
               <div className="text-center">
-                <span>Do not have account? </span>
-                <a href="/signup">Register</a>
+                <span>{t('logIn.noAccount')} </span>
+                <a href="/signup">{t('logIn.register')}</a>
               </div>
             </div>
           </div>

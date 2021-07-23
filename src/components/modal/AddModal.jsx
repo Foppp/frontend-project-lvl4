@@ -2,9 +2,11 @@ import React, { useEffect, useRef } from 'react';
 import { useFormik } from 'formik';
 import { Modal, Button, Form, ModalFooter } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import { validate } from './schemaValidation';
 
 const Add = ({ addNewChannel, closeModal }) => {
+  const { t } = useTranslation();
   const isOpened = useSelector((state) => state.modal.isOpened);
   const channels = useSelector((state) => state.channelsInfo.channels);
   const inputRef = useRef(null);
@@ -26,7 +28,7 @@ const Add = ({ addNewChannel, closeModal }) => {
   return (
     <Modal show={isOpened} onHide={closeModal}>
       <Modal.Header>
-        <Modal.Title>Add Channel</Modal.Title>
+        <Modal.Title>{t('channels.modal.addChannel')}</Modal.Title>
         <Button variant="close" onClick={closeModal}></Button>
       </Modal.Header>
       <Modal.Body>
@@ -49,10 +51,10 @@ const Add = ({ addNewChannel, closeModal }) => {
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={closeModal}>
-          Close
+          {t('buttons.modal.close')}
         </Button>
         <Button variant="primary" type="submit" onClick={formik.handleSubmit}>
-          Add
+          {t('buttons.modal.add')}
         </Button>        
       </Modal.Footer>
     </Modal>

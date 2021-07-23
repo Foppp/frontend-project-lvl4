@@ -2,12 +2,14 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useFormik } from 'formik';
 import _ from 'lodash';
 import { useSelector, useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import { getUserId } from '../redux/user.js';
 import io from 'socket.io-client';
 import { addMessage } from '../redux/masseges.js';
 
 
 const InputForm = () => {
+  const { t } = useTranslation();
   const messages = useSelector((state) => state.messagesInfo.messages);
   const channels = useSelector((state) => state.channelsInfo.channels);
   const channelId = useSelector((state) => state.channelsInfo.currentChannelId);
@@ -24,7 +26,7 @@ const InputForm = () => {
     socketRef.current.on('newMessage', (message) => {
       dispatch(addMessage(message));
     })
-  }, []);
+  }, [socketRef]);
 
   const onSubmit = ({ body }) => {
     setMessageSendStatus('sending');
@@ -58,7 +60,7 @@ const InputForm = () => {
             ref={inputFocus}
             name="body"
             data-testid="new-message"
-            placeholder="Type text here..."
+            placeholder={t('messages.messageInput')}
             className="border-0 p-0 ps-2 form-control"
             onChange={formik.handleChange}
             value={formik.values.body}

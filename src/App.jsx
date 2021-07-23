@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
-
+// import i18n from 'i18next';
+import { useTranslation, initReactI18next, I18nextProvider } from 'react-i18next';
 import {
   BrowserRouter as Router,
   Switch,
@@ -14,6 +15,8 @@ import SignupPage from './pages/SignupPage';
 import PageNotFound from './pages/PageNotFound';
 import useAuth from './hooks/index';
 import authContext from './contexts/index';
+import i18n from './utils/i18n';
+
 
 const AuthProvider = ({ children }) => {
   const loggedInUser = localStorage.getItem('userId');
@@ -42,8 +45,10 @@ const PrivateRoute = ({ children, path }) => {
   );
 }
 
-const App = () => (
-  <div className="d-flex flex-column h-100">
+const App = () => {
+  return (
+    <div className="d-flex flex-column h-100">
+    <I18nextProvider i18n={i18n}>
     <AuthProvider>
       <Router>
         <NavPanel />
@@ -62,8 +67,10 @@ const App = () => (
           </Route>
         </Switch>
       </Router>
-    </AuthProvider>
+        </AuthProvider>
+    </I18nextProvider>
   </div>
 );
+}
 
 export default App;

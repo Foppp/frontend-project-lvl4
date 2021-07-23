@@ -1,10 +1,12 @@
 import React, { useEffect, useRef } from 'react';
 import { useFormik } from 'formik';
 import { Modal, Button, Form, ModalFooter } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { validate } from './schemaValidation';
 
 const Rename = ({ renameChannel, closeModal }) => {
+  const { t } = useTranslation();
   const isOpened = useSelector((state) => state.modal.isOpened);
   const channels = useSelector((state) => state.channelsInfo.channels);
   const modalChannelId = useSelector((state) => state.modal.extra.channelId);
@@ -26,7 +28,7 @@ const Rename = ({ renameChannel, closeModal }) => {
   return (
     <Modal show={isOpened} onHide={closeModal}>
       <Modal.Header>
-        <Modal.Title>Rename Channel</Modal.Title>
+        <Modal.Title>{t('channels.modal.renameChannel')}</Modal.Title>
         <Button variant="close" onClick={closeModal}></Button>
       </Modal.Header>
       <Modal.Body>
@@ -49,10 +51,10 @@ const Rename = ({ renameChannel, closeModal }) => {
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={closeModal}>
-          Close
+          {t('buttons.modal.close')}
         </Button>
         <Button variant="primary" type="submit" onClick={formik.handleSubmit}>
-          Rename
+          {t('buttons.modal.rename')}
         </Button>        
       </Modal.Footer>
     </Modal>
