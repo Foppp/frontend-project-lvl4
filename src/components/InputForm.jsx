@@ -23,7 +23,6 @@ const InputForm = () => {
     
     socketRef.current.on('newMessage', (message) => {
       dispatch(addMessage(message));
-      setMessageSendStatus('sent');
     })
   }, []);
 
@@ -35,8 +34,9 @@ const InputForm = () => {
     const message = { id, body, username, channelId };
     if (socketRef.current.connected) {
       socketRef.current.emit('newMessage', message);
+      setMessageSendStatus('sent');
     }
-    setMessageSendStatus('failed')
+    setTimeout(() => setMessageSendStatus('failed'), 2000)
   };
 
   const formik = useFormik({
