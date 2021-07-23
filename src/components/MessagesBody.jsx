@@ -7,7 +7,7 @@ const MessagesBody = () => {
   const currentChannelId = useSelector((state) => state.channelsInfo.currentChannelId);
   const currentChannelMessages = messages.filter(({ channelId }) => channelId === currentChannelId);
   
-  useEffect(() => setTimeout(() => divRef.current.scrollIntoView({ behavior: 'smooth' }), 0), [messages, divRef]);
+  useEffect(() => setTimeout(() => divRef.current.scrollIntoView({ behavior: 'smooth' }), 0), [messages, currentChannelId]);
   return (
     <div id="messages-box" className="chat-messages overflow-auto px-5 ">
       {currentChannelMessages.map(({ body, id, username }) => {

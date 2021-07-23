@@ -20,6 +20,7 @@ const InputForm = () => {
 
   useEffect(() => {
     socketRef.current = io();
+    
     socketRef.current.on('newMessage', (message) => {
       dispatch(addMessage(message));
       setMessageSendStatus('sent');
@@ -32,7 +33,9 @@ const InputForm = () => {
     const username = userId.username;
     const id = _.uniqueId();
     const message = { id, body, username, channelId };
-    socketRef.current.emit('newMessage', message)
+    if (socketRef.current.connected) {
+      socketRef.current.emit('newMessage', message);
+    }
   };
 
   const formik = useFormik({
