@@ -36,6 +36,7 @@ const InputForm = () => {
     if (socketRef.current.connected) {
       socketRef.current.emit('newMessage', message);
     }
+    setMessageSendStatus('failed')
   };
 
   const formik = useFormik({
