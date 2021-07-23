@@ -13,6 +13,7 @@ const LoginPage = () => {
 
   useEffect(() => inputFocus.current.focus(), []);
 
+  const [loginStatus, setLoginStatus] = useState(null)
   const [error, setError] = useState(false);
   const history = useHistory();
   const location = useLocation();
@@ -20,14 +21,17 @@ const LoginPage = () => {
 
 
   const handleSubmit = async (data) => {
+    setLoginStatus('pending')
     try {
       const response = await axios.post('/api/v1/login', data);
       localStorage.setItem('userId', JSON.stringify(response.data));
       auth.logIn();
       const { from } = location.state || { from: { pathname: '/' } };
       history.replace(from);
+      setLoginStatus('fullfiled');
     } catch (e) {
       setError(true)
+      setLoginStatus('rejected');
     }
   };
 
@@ -76,6 +80,7 @@ const LoginPage = () => {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.username}
+                    disabled={loginStatus === 'pending'}
                   />
                   <label htmlFor="username">Username</label>
                 </div>
@@ -91,11 +96,12 @@ const LoginPage = () => {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.password}
+                    disabled={loginStatus === 'pending'}
                   />
                   <label htmlFor="username">Password</label>
                   <div className="invalid-tooltip">Username or Password is wrong</div>
                 </div>
-                <button type="submit" className="w-100 mb-3 mt-3 btn btn-outline-primary" disabled={formik.isSubmitting}>Login</button>
+                <button type="submit" className="w-100 mb-3 mt-3 btn btn-outline-primary" disabled={loginStatus === 'pending'}>Login</button>
               </form>
             </div>
             <div className="card-footer p-4">

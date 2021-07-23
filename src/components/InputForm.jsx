@@ -50,6 +50,7 @@ const InputForm = () => {
       <form noValidate="" className="py-1 border rounded-2" onSubmit={formik.handleSubmit}>
         <div className="input-group has-validation">
           <input
+            required
             ref={inputFocus}
             name="body"
             data-testid="new-message"

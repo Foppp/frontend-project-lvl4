@@ -10,6 +10,7 @@ import {
 import NavPanel from './components/NavPanel';
 import Login from './pages/LoginPage';
 import HomePage from './pages/HomePage';
+import SignupPage from './pages/SignupPage';
 import PageNotFound from './pages/PageNotFound';
 import useAuth from './hooks/index';
 import authContext from './contexts/index';
@@ -52,6 +53,9 @@ const App = () => (
           </PrivateRoute>
           <Route path="/login">
             <Login />
+          </Route>
+          <Route path="/signup">
+            <SignupPage />
           </Route>
           <Route path="*">
             <PageNotFound />
