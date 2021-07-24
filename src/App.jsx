@@ -17,7 +17,6 @@ import useAuth from './hooks/index';
 import authContext from './contexts/index';
 import i18n from './utils/i18n';
 
-
 const AuthProvider = ({ children }) => {
   const loggedInUser = localStorage.getItem('userId');
   const [loggedIn, setLoggedIn] = useState(loggedInUser ? true: false);
