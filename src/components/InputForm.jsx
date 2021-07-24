@@ -7,7 +7,6 @@ import { getUserId } from '../redux/user.js';
 import io from 'socket.io-client';
 import { addMessage } from '../redux/masseges.js';
 
-
 const InputForm = () => {
   const { t } = useTranslation();
   const messages = useSelector((state) => state.messagesInfo.messages);
