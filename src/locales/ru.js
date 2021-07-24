@@ -48,8 +48,21 @@ export default {
     },
     errors: {
       userExist: 'Это имя пользователя уже существует',
-      wrongUsername: 'Неверное имя пользователя или пароль',
+      channelExist: 'Это имя канала уже существует',
+      wrongUsername: 'Неверное имя или пароль',
       unknown: 'Неизвестная ошибка',
+      minCharacters: {
+        "keyWithCount_0": "Минимум {{count}} символ",
+        "keyWithCount_1": "Минимум {{count}} символа",
+        "keyWithCount_2": "Минимум {{count}} символов",
+      },
+      maxCharacters: {
+        "keyWithCount_0": "Максимум {{count}} символ",
+        "keyWithCount_1": "Максимум {{count}} символа",
+        "keyWithCount_2": "Максимум {{count}} символов",
+      },
+      required: 'Обязательное поле',
+      passMatch: 'Пароли должны совпадать',
     },
   },
 };

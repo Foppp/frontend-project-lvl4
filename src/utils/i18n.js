@@ -1,5 +1,6 @@
 import i18next from 'i18next';
 import { initReactI18next } from 'react-i18next';
+import * as Yup from 'yup';
 import resources from '../locales/index.js';
 
 const i18n = i18next.createInstance();
@@ -14,6 +15,18 @@ i18n
     interpolation: {
       escapeValue: false
     }
-  });
-
+  },
+    Yup.setLocale({
+      mixed: {
+        default: i18n.t('errors.unknown'),
+        required: i18n.t('errors.required'),
+        oneOf: () => i18n.t('errors.passMatch'),
+        notOneOf: () => i18n.t('errors.channelExist')
+      },
+      string: {
+        min: ({ min }) => i18n.t('errors.minCharacters.keyWithCount', { count: min }),
+        max: ({ max }) => i18n.t('errors.maxCharacters.keyWithCount', { count: max }),
+      },
+    }),
+  );
 export default i18n;

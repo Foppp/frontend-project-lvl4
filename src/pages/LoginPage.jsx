@@ -46,9 +46,9 @@ const LoginPage = () => {
     },
     validationSchema: Yup.object().shape({
     username: Yup.string()
-      .required('Required'),
+      .required(),
     password: Yup.string()
-      .required('Required'),
+      .required(),
     }),
   });
 

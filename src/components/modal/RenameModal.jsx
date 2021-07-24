@@ -2,8 +2,8 @@ import React, { useEffect, useRef } from 'react';
 import { useFormik } from 'formik';
 import { Modal, Button, Form, ModalFooter } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
+import * as Yup from 'yup';
 import { useSelector } from 'react-redux';
-import { validate } from './schemaValidation';
 
 const Rename = ({ renameChannel, closeModal }) => {
   const { t } = useTranslation();
@@ -22,7 +22,12 @@ const Rename = ({ renameChannel, closeModal }) => {
     onSubmit: ({ body }) => {
       renameChannel(modalChannelId, body);
     },
-    validationSchema: validate(channels),
+    validationSchema: Yup.object().shape({
+      body: Yup.string()
+        .min(3)
+        .max(20)
+        .notOneOf(channels.map(({name}) => name))
+    }),
   });
   
   return (

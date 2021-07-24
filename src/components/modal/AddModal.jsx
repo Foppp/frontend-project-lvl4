@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 import { useFormik } from 'formik';
+import * as Yup from 'yup';
 import { Modal, Button, Form, ModalFooter } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { validate } from './schemaValidation';
 
 const Add = ({ addNewChannel, closeModal }) => {
   const { t } = useTranslation();
@@ -22,7 +22,12 @@ const Add = ({ addNewChannel, closeModal }) => {
     onSubmit: ({ body }) => {
       addNewChannel(body)
     },
-    validationSchema: validate(channels),
+    validationSchema: Yup.object().shape({
+      body: Yup.string()
+        .min(3)
+        .max(20)
+        .notOneOf(channels.map(({name}) => name))
+    }),
   });
   
   return (

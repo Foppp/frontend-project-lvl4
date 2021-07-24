@@ -51,14 +51,14 @@ const SignupPage = () => {
     },
     validationSchema: Yup.object().shape({
       username: Yup.string()
-        .required('Required')
-        .min(3, 'From 3 to 20 characters')
-        .max(20, 'From 3 to 20 characters'),
+        .required()
+        .min(3)
+        .max(20),
       password: Yup.string()
-        .required('Required')
-        .min(6, 'Minimum 6 characters'),
+        .required()
+        .min(6),
       confirmPassword: Yup.string()
-        .oneOf([Yup.ref('password'), null], 'Passwords must match')
+        .oneOf([Yup.ref('password'), null])
     }),
   });
 
@@ -136,7 +136,13 @@ const SignupPage = () => {
                   <label htmlFor="username">{t('signUp.confirmPassword')}</label>
                   <div className="invalid-tooltip">{formik.errors.confirmPassword}</div>
                 </div>
-                <button type="submit" className="w-100 mb-3 mt-3 btn btn-outline-primary" disabled={signupStatus === 'pending'}>{t('buttons.signUpButton')}</button>
+                <button
+                  type="submit"
+                  className="w-100 mb-3 mt-3 btn btn-outline-primary"
+                  disabled={signupStatus === 'pending'}
+                >
+                  {t('buttons.signUpButton')}
+                </button>
               </form>
             </div>
           </div>
