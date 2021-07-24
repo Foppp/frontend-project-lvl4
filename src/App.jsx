@@ -1,5 +1,4 @@
 import React, { useContext, useState, useEffect } from 'react';
-// import i18n from 'i18next';
 import { useTranslation, initReactI18next, I18nextProvider } from 'react-i18next';
 import {
   BrowserRouter as Router,
@@ -7,7 +6,8 @@ import {
   Route,
   Link,
   Redirect,
-} from "react-router-dom"
+} from "react-router-dom";
+import { Provider } from '@rollbar/react';
 import NavPanel from './components/NavPanel';
 import Login from './pages/LoginPage';
 import HomePage from './pages/HomePage';
@@ -16,6 +16,17 @@ import PageNotFound from './pages/PageNotFound';
 import useAuth from './hooks/index';
 import authContext from './contexts/index';
 import i18n from './utils/i18n';
+
+
+const rollbarConfig = {
+    accessToken: "b2c6dd102a49436081b2b5f0003ad1e1",
+    captureUncaught: true,
+    captureUnhandledRejections: true,
+    payload: {
+        environment: "production"
+    }
+};
+
 
 const AuthProvider = ({ children }) => {
   const loggedInUser = localStorage.getItem('userId');
@@ -46,6 +57,7 @@ const PrivateRoute = ({ children, path }) => {
 
 const App = () => {
   return (
+    <Provider config={rollbarConfig}>
     <div className="d-flex flex-column h-100">
     <I18nextProvider i18n={i18n}>
     <AuthProvider>
@@ -68,7 +80,8 @@ const App = () => {
       </Router>
         </AuthProvider>
     </I18nextProvider>
-  </div>
+      </div>
+      </Provider>
 );
 }
 
