@@ -45,7 +45,7 @@ const Add = ({ addNewChannel, closeModal }) => {
               ref={inputRef}
               onChange={formik.handleChange}
               value={formik.values.body}
-              data-testid="input-body"
+              data-testid="add-channel"
               name="body"
             />
             <Form.Control.Feedback type="invalid">

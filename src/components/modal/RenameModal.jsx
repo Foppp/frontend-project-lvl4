@@ -45,7 +45,7 @@ const Rename = ({ renameChannel, closeModal }) => {
               ref={inputRef}
               onChange={formik.handleChange}
               value={formik.values.body}
-              data-testid="input-body"
+              data-testid="rename-channel"
               name="body"
             />
             <Form.Control.Feedback type="invalid">
