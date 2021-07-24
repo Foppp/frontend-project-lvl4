@@ -12,7 +12,7 @@ import store from './redux/store.js'
 import App from './App.jsx';
 
 const rollbarConfig = {
-  accessToken: "b2c6dd102a49436081b2b5f0003ad1e1",
+  accessToken: 'POST_CLIENT_ITEM_ACCESS_TOKEN',
   environment: 'production',
 };
 
