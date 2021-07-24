@@ -20,7 +20,6 @@ const LoginPage = () => {
   const location = useLocation();
   const auth = useAuth();
 
-
   const handleSubmit = async (data) => {
     setLoginStatus('pending')
     try {
