@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { useLocation, useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -107,7 +108,7 @@ const LoginPage = () => {
             <div className="card-footer p-4">
               <div className="text-center">
                 <span>{t('logIn.noAccount')} </span>
-                <a href="/signup">{t('logIn.register')}</a>
+                <Link to="/signup">{t('logIn.register')}</Link>
               </div>
             </div>
           </div>
