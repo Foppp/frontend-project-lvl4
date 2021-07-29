@@ -9,13 +9,20 @@ import { useDispatch } from 'react-redux';
 import store from './redux/store.js'
 import App from './App.jsx';
 
-if (process.env.NODE_ENV !== 'production') {
-  localStorage.debug = 'chat:*';
-}
-render(
-  <Provider store={store}>
-      <App />
-  </Provider>,
-  document.getElementById('chat'),
-);
 
+const init = () => {
+  if (process.env.NODE_ENV !== 'production') {
+    localStorage.debug = 'chat:*';
+  }
+  const vdom = (
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
+  return vdom;
+// render(
+
+//   document.getElementById('chat'),
+// );
+}
+export default init;
