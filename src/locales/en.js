@@ -29,6 +29,7 @@ export default {
     },
     messages: {
       messageInput: 'Type text here...',
+      messageSend: 'Send',
       messagesCount: {
         "keyWithCount": "{{count}} message",
         "keyWithCount_plural": "{{count}} messages"

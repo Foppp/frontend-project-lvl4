@@ -29,6 +29,7 @@ export default {
     },
     messages: {
       messageInput: 'Введите сообщение тут...',
+      messageSend: 'Отправить',
       messagesCount: {
         "keyWithCount_0": "{{count}} сообщениe",
         "keyWithCount_1": "{{count}} сообщения",
