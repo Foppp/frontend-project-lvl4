@@ -52,11 +52,11 @@ const SignupPage = () => {
     validationSchema: Yup.object().shape({
       username: Yup.string()
         .required()
-        .min(3)
-        .max(20),
+        .min()
+        .max(),
       password: Yup.string()
         .required()
-        .min(6),
+        .min(),
       confirmPassword: Yup.string()
         .oneOf([Yup.ref('password'), null])
     }),
