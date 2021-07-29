@@ -117,7 +117,6 @@ const SignupPage = () => {
                   />
                   <label htmlFor="password">{t('signUp.password')}</label>
                   <div className="invalid-tooltip">{formik.errors.password}</div>
-                  <div className="invalid-tooltip">{formik.errors.password}</div>
                 </div>
                 <div className="form-floating mb-4 form-group">
                   <input
