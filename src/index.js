@@ -21,9 +21,5 @@ const init = () => {
   );
   return vdom;
 }
-const vdom = init();
-render(
-  vdom,
-  document.getElementById('chat'),
-);
+
 export default init;
