@@ -2,12 +2,12 @@ export default {
   translation: {
     buttons: {
       logInButton: 'Войти',
-      signUpButton: 'Зарегестрироваться',
+      signUpButton: 'Зарегистрироваться',
       logOutButton: 'Выйти',
       modal: {
-        add: 'Добавить',
-        remove: 'Удалить',
-        rename: 'Переименовать',
+        add: 'Отправить',
+        remove: 'Отправить',
+        rename: 'Отправить',
         close: 'Отменить',
       },
     },
@@ -16,10 +16,10 @@ export default {
     },
     logIn: {
       title: 'Войти',
-      userName: 'Имя пользователя',
+      userName: 'Ваш ник',
       password: 'Пароль',
       noAccount: 'Нет аккаунта?',
-      register: 'Регистрируйся',
+      register: 'Регистрация',
     },
     signUp: {
       title: 'Регистрация',
@@ -49,18 +49,11 @@ export default {
     errors: {
       userExist: 'Это имя пользователя уже существует',
       channelExist: 'Это имя канала уже существует',
-      wrongUsername: 'Неверное имя или пароль',
+      wrongUsername: 'Неверные имя пользователя или пароль',
       unknown: 'Неизвестная ошибка',
-      minCharacters: {
-        "keyWithCount_0": "Минимум {{count}} символ",
-        "keyWithCount_1": "Минимум {{count}} символа",
-        "keyWithCount_2": "Минимум {{count}} символов",
-      },
-      maxCharacters: {
-        "keyWithCount_0": "Максимум {{count}} символ",
-        "keyWithCount_1": "Максимум {{count}} символа",
-        "keyWithCount_2": "Максимум {{count}} символов",
-      },
+      minCharacters: 'От 3 до 20 символов',
+      minCharactersPass: 'Не менее 6 символов',
+      maxCharacters: 'От 3 до 20 символов',
       required: 'Обязательное поле',
       passMatch: 'Пароли должны совпадать',
     },
