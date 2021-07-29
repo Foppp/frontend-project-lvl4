@@ -33,11 +33,13 @@ const InputForm = () => {
     const username = userId.username;
     const id = _.uniqueId();
     const message = { id, body, username, channelId };
-    if (socketRef.current.connected) {
-      socketRef.current.emit('newMessage', message);
+    socketRef.current.emit('newMessage', message);
       setMessageSendStatus('sent');
-    }
-    setTimeout(() => setMessageSendStatus('failed'), 2000)
+    // if (socketRef.current.connected) {
+    //   socketRef.current.emit('newMessage', message);
+    //   setMessageSendStatus('sent');
+    // }
+    // setTimeout(() => setMessageSendStatus('failed'), 2000)
   };
 
   const formik = useFormik({
