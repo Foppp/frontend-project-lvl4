@@ -32,9 +32,7 @@ const InputForm = ({ socket }) => {
     const username = userId.username;
     const id = _.uniqueId();
     const message = { id, body, username, channelId };
-    socketRef.current.emit('newMessage', message, (acknowledge) => {
-        if (acknowledge.status === 'ok') resetForm();
-      });
+    socketRef.current.emit('newMessage', message);
       setMessageSendStatus('sent');
     // if (socketRef.current.connected) {
     //   socketRef.current.emit('newMessage', message);
