@@ -14,7 +14,7 @@ const modals = {
   renameChannel: Rename,
 };
 
-const Modal = () => {
+const Modal = ({ socket }) => {
   const isOpened = useSelector((state) => state.modal.isOpened);
   const channels = useSelector((state) => state.channelsInfo.channels);
   const defaultChannelId = _.get(_.head(channels), 'id', null);
@@ -25,7 +25,7 @@ const Modal = () => {
   const Component = modals[modalType];
 
   useEffect(() => {
-    socketRef.current = io();
+    socketRef.current = socket;
     socketRef.current.on('newChannel', (channel) => {
       dispatch(setCurrentChannel(channel.id))
       dispatch(addChannel(channel));
@@ -42,15 +42,15 @@ const Modal = () => {
     dispatch(closeModal())
   };
 
-  const handleAddChannel = (body) => {
+  const handleAddChannel = async (body) => {
     socketRef.current.emit('newChannel', { name: body });
   };
 
-  const handleRenameChannel = (id, name) => {
+  const handleRenameChannel = async (id, name) => {
     socketRef.current.emit('renameChannel', { id, name })
   };
 
-  const handleRemoveChannel = (id) => () => {
+  const handleRemoveChannel = async (id) => () => {
     dispatch(setCurrentChannel(defaultChannelId))
     socketRef.current.emit('removeChannel', { id });
   };

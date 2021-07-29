@@ -25,7 +25,7 @@ const HomePage = ({ socket }) => {
             <MessagesHead />
             <MessagesBody />
             <InputForm socket={socket}/>
-            <ModalComponent />
+            <ModalComponent socket={socket}/>
           </div>
         </div>
       </div>
