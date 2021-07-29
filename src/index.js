@@ -13,7 +13,7 @@ import { initReactI18next, I18nextProvider } from 'react-i18next';
 import * as Yup from 'yup';
 import resources from './locales/index.js';
 
-const init = () => {
+const init = (socket) => {
   if (process.env.NODE_ENV !== 'production') {
     localStorage.debug = 'chat:*';
   }
@@ -44,7 +44,7 @@ const init = () => {
       const vdom = (
         <Provider store={store}>
           <I18nextProvider i18n={i18n}>
-            <App />
+            <App socket={socket}/>
           </I18nextProvider>
         </Provider>
       );

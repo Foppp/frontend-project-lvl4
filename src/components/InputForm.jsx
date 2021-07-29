@@ -7,7 +7,7 @@ import { getUserId } from '../redux/user.js';
 import io from 'socket.io-client';
 import { addMessage } from '../redux/masseges.js';
 
-const InputForm = () => {
+const InputForm = ({ socket }) => {
   const { t } = useTranslation();
   const messages = useSelector((state) => state.messagesInfo.messages);
   const channels = useSelector((state) => state.channelsInfo.channels);
@@ -20,7 +20,7 @@ const InputForm = () => {
   useEffect(() => inputFocus.current.focus(), [channelId, messages, messageSendStatus]);
 
   useEffect(() => {
-    socketRef.current = io();
+    socketRef.current = socket;
     
     socketRef.current.on('newMessage', (message) => {
       dispatch(addMessage(message));

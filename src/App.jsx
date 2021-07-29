@@ -44,7 +44,7 @@ const PrivateRoute = ({ children, path }) => {
   );
 }
 
-const App = () => {
+const App = ({ socket }) => {
   return (
     <div className="d-flex flex-column h-100">
     <AuthProvider>
@@ -52,7 +52,7 @@ const App = () => {
         <NavPanel />
         <Switch>
           <PrivateRoute exact path="/">
-            <HomePage />
+              <HomePage socket={socket}/>
           </PrivateRoute>
           <Route path="/login">
             <Login />

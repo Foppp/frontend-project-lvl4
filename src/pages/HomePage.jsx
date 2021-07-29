@@ -8,7 +8,7 @@ import MessagesHead from '../components/MessagesHead';
 import MessagesBody from '../components/MessagesBody';
 import ModalComponent from '../components/modal/index.js';
 
-const HomePage = (props) => {
+const HomePage = ({ socket }) => {
   const dispatch = useDispatch();
   const modalType = useSelector((state) => state.modal.type);
   
@@ -24,7 +24,7 @@ const HomePage = (props) => {
           <div className="d-flex flex-column h-100">
             <MessagesHead />
             <MessagesBody />
-            <InputForm />
+            <InputForm socket={socket}/>
             <ModalComponent />
           </div>
         </div>
