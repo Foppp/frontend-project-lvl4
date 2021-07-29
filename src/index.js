@@ -10,7 +10,7 @@ import store from './redux/store.js'
 import App from './App.jsx';
 
 
-const init = async () => {
+const init = () => {
   if (process.env.NODE_ENV !== 'production') {
     localStorage.debug = 'chat:*';
   }
