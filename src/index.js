@@ -24,5 +24,5 @@ const init = () => {
   }
   return vdom;
 };
-init()
+init();
 export default init;
