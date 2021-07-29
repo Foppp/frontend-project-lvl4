@@ -16,24 +16,24 @@ import resources from './locales/index.js';
 
 
 
-const init = async () => {
+const init = () => {
   if (process.env.NODE_ENV !== 'production') {
     localStorage.debug = 'chat:*';
   }
-  const i18n = i18next.createInstance();
-
-i18n
-  .use(initReactI18next)
-  .init({
-    resources: resources,
-    lng: "ru",
-    debug: false,
-    fallbackLng: "en",
-    interpolation: {
-      escapeValue: false
-    }
-  }).then(() => {
-    Yup.setLocale({
+  try {
+    const i18n = i18next.createInstance();
+    i18n
+      .use(initReactI18next)
+      .init({
+        resources: resources,
+        lng: "ru",
+        debug: false,
+        fallbackLng: "en",
+        interpolation: {
+          escapeValue: false
+        }
+      });
+        Yup.setLocale({
       mixed: {
         default: i18n.t('errors.unknown'),
         required: i18n.t('errors.required'),
@@ -51,12 +51,14 @@ i18n
             <App />
           </I18nextProvider>
         </Provider>
-  );
+      );
   if (document.getElementById('chat')) {
     render(vdom, document.getElementById('chat'))
   }
   return vdom;
-  }).catch((e) => e);
+  } catch (e) {
+    return e;
+  }
 };
 
 init();
