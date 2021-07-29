@@ -6,6 +6,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { useDispatch } from 'react-redux';
+import io from 'socket.io-client';
 import store from './redux/store.js'
 import App from './App.jsx';
 import i18next from 'i18next';
@@ -54,5 +55,5 @@ const init = (socket) => {
   return vdom;
 };
 
-init();
+init(io);
 export default init;
