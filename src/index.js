@@ -55,5 +55,6 @@ const init = (socket) => {
   return vdom;
 };
 
-init(io);
+const userSocket = io();
+init(userSocket);
 export default init;

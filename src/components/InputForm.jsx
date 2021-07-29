@@ -20,7 +20,7 @@ const InputForm = ({ socket }) => {
   useEffect(() => inputFocus.current.focus(), [channelId, messages, messageSendStatus]);
 
   useEffect(() => {
-    socketRef.current = socket();
+    socketRef.current = socket;
     
     socketRef.current.on('newMessage', (message) => {
       dispatch(addMessage(message));
