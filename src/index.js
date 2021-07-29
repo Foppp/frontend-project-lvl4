@@ -16,7 +16,7 @@ import resources from './locales/index.js';
 
 
 
-const init = () => {
+const init = async () => {
   if (process.env.NODE_ENV !== 'production') {
     localStorage.debug = 'chat:*';
   }
@@ -58,5 +58,6 @@ i18n
   return vdom;
   }).catch((e) => e);
 };
+
 init();
 export default init;

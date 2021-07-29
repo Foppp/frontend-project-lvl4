@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { useTranslation, initReactI18next, I18nextProvider } from 'react-i18next';
+// import { useTranslation, initReactI18next, I18nextProvider } from 'react-i18next';
 import {
   BrowserRouter as Router,
   Switch,
@@ -47,7 +47,6 @@ const PrivateRoute = ({ children, path }) => {
 const App = () => {
   return (
     <div className="d-flex flex-column h-100">
-    <I18nextProvider i18n={i18n}>
     <AuthProvider>
       <Router>
         <NavPanel />
@@ -67,7 +66,6 @@ const App = () => {
         </Switch>
       </Router>
         </AuthProvider>
-    </I18nextProvider>
   </div>
 );
 }
