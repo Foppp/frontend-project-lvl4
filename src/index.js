@@ -20,7 +20,6 @@ const init = () => {
   if (process.env.NODE_ENV !== 'production') {
     localStorage.debug = 'chat:*';
   }
-  try {
     const i18n = i18next.createInstance();
     i18n
       .use(initReactI18next)
@@ -32,7 +31,7 @@ const init = () => {
         interpolation: {
           escapeValue: false
         }
-      });
+      },
         Yup.setLocale({
       mixed: {
         default: i18n.t('errors.unknown'),
@@ -44,7 +43,7 @@ const init = () => {
         min: ({ path }) => path === 'password' ? i18n.t('errors.minCharactersPass') : i18n.t('errors.minCharacters'),
         max: () => i18n.t('errors.maxCharacters'),
       },
-    });
+    }));
       const vdom = (
         <Provider store={store}>
           <I18nextProvider i18n={i18n}>
@@ -56,9 +55,6 @@ const init = () => {
     render(vdom, document.getElementById('chat'))
   }
   return vdom;
-  } catch (e) {
-    return e;
-  }
 };
 
 init();
