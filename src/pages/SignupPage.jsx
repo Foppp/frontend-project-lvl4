@@ -89,7 +89,7 @@ const SignupPage = () => {
                     name="username"
                     autoComplete="username"
                     required
-                    placeholder="Ваш ник"
+                    placeholder={t('signUp.userName')}
                     type="text"
                     id="username"
                     className={userNameClassName}
@@ -106,7 +106,7 @@ const SignupPage = () => {
                     name="password"
                     autoComplete="current-password"
                     required
-                    placeholder="Пароль"
+                    placeholder={t('signUp.password')}
                     type="password"
                     id="password"
                     className={passClassName}
@@ -115,7 +115,7 @@ const SignupPage = () => {
                     value={formik.values.password}
                     disabled={signupStatus === 'pending'}
                   />
-                  <label htmlFor="username">{t('signUp.password')}</label>
+                  <label htmlFor="password">{t('signUp.password')}</label>
                   <div className="invalid-tooltip">{formik.errors.password}</div>
                   <div className="invalid-tooltip">{formik.errors.password}</div>
                 </div>
@@ -124,7 +124,7 @@ const SignupPage = () => {
                     name="confirmPassword"
                     autoComplete="confirm-password"
                     required
-                    placeholder="Пароль"
+                    placeholder={t('signUp.confirmPassword')}
                     type="password"
                     id="confirmPassword"
                     className={confirmPassClassName}
@@ -133,7 +133,7 @@ const SignupPage = () => {
                     value={formik.values.confirmPassword}
                     disabled={signupStatus === 'pending'}
                   />
-                  <label htmlFor="username">{t('signUp.confirmPassword')}</label>
+                  <label htmlFor="confirmPassword">{t('signUp.confirmPassword')}</label>
                   <div className="invalid-tooltip">{formik.errors.confirmPassword}</div>
                 </div>
                 <button

@@ -74,7 +74,7 @@ const LoginPage = () => {
                     name="username"
                     autoComplete="username"
                     required
-                    placeholder="Ваш ник"
+                    placeholder={t('logIn.userName')}
                     type="text"
                     id="username"
                     className={className}
@@ -90,7 +90,7 @@ const LoginPage = () => {
                     name="password"
                     autoComplete="current-password"
                     required
-                    placeholder="Пароль"
+                    placeholder={t('logIn.userName')}
                     type="password"
                     id="password"
                     className={className}
@@ -99,7 +99,7 @@ const LoginPage = () => {
                     value={formik.values.password}
                     disabled={loginStatus === 'pending'}
                   />
-                  <label htmlFor="username">{t('logIn.password')}</label>
+                  <label htmlFor="password">{t('logIn.password')}</label>
                   {error && <div className="invalid-tooltip">{t('errors.wrongUsername')}</div>}
                 </div>
                 <button type="submit" className="w-100 mb-3 mt-3 btn btn-outline-primary" disabled={loginStatus === 'pending'}>{t('buttons.logInButton')}</button>
