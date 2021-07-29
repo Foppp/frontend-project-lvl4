@@ -50,14 +50,8 @@ export default {
       channelExist: 'This channel name already exist',
       wrongUsername: 'Username or Password is wrong',
       unknown: 'Unknown Error',
-      minCharacters: {
-        "keyWithCount": "Min {{count}} character",
-        "keyWithCount_plural": "Min {{count}} characters",
-      },
-      maxCharacters: {
-        "keyWithCount": "Max {{count}} character",
-        "keyWithCount_plural": "Max {{count}} characters",
-      },
+      minCharacters: 'From 3 to 20 characters',
+      maxCharacters: 'From 3 to 20 characters',
       required: 'Required field',
       passMatch: 'Passwords must match',
     },

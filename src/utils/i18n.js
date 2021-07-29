@@ -24,8 +24,8 @@ i18n
         notOneOf: () => i18n.t('errors.channelExist')
       },
       string: {
-        min: ({ min }) => i18n.t('errors.minCharacters.keyWithCount', { count: min }),
-        max: ({ max }) => i18n.t('errors.maxCharacters.keyWithCount', { count: max }),
+        min: ({ path }) => path === 'password' ? i18n.t('errors.minCharactersPass'): i18n.t('errors.minCharacters'),
+        max: () => i18n.t('errors.maxCharacters'),
       },
     }),
   );

@@ -100,7 +100,7 @@ const LoginPage = () => {
                     disabled={loginStatus === 'pending'}
                   />
                   <label htmlFor="username">{t('logIn.password')}</label>
-                  <div className="invalid-tooltip">{t('errors.wrongUsername')}</div>
+                  {error && <div className="invalid-tooltip">{t('errors.wrongUsername')}</div>}
                 </div>
                 <button type="submit" className="w-100 mb-3 mt-3 btn btn-outline-primary" disabled={loginStatus === 'pending'}>{t('buttons.logInButton')}</button>
               </form>

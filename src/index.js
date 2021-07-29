@@ -20,9 +20,10 @@ const init = () => {
     </Provider>
   );
   return vdom;
-// render(
-
-//   document.getElementById('chat'),
-// );
 }
+const vdom = init();
+render(
+  vdom,
+  document.getElementById('chat'),
+);
 export default init;
