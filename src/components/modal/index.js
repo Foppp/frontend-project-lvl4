@@ -43,16 +43,22 @@ const Modal = ({ socket }) => {
   };
 
   const handleAddChannel = async (body) => {
-    socketRef.current.emit('newChannel', { name: body });
+    socketRef.current.emit('newChannel', { name: body },  (acknowledge) => {
+        if (acknowledge.status === 'ok') console.log(acknowledge.data);
+      });
   };
 
   const handleRenameChannel = async (id, name) => {
-    socketRef.current.emit('renameChannel', { id, name })
+    socketRef.current.emit('renameChannel', { id, name }, (acknowledge) => {
+        if (acknowledge.status === 'ok') console.log('ok');
+      })
   };
 
   const handleRemoveChannel = async (id) => () => {
     dispatch(setCurrentChannel(defaultChannelId))
-    socketRef.current.emit('removeChannel', { id });
+    socketRef.current.emit('removeChannel', { id }, (acknowledge) => {
+        if (acknowledge.status === 'ok') console.log('ok');
+      });
   };
 
   return (
