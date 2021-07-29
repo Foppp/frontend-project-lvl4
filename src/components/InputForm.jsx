@@ -21,19 +21,20 @@ const InputForm = ({ socket }) => {
 
   useEffect(() => {
     socketRef.current = socket;
-    
     socketRef.current.on('newMessage', (message) => {
       dispatch(addMessage(message));
     })
   }, [socketRef]);
 
-  const onSubmit = ({ body }) => {
+  const onSubmit = async ({ body }, { resetForm }) => {
     setMessageSendStatus('sending');
     const userId = getUserId();
     const username = userId.username;
     const id = _.uniqueId();
     const message = { id, body, username, channelId };
-    socketRef.current.emit('newMessage', message);
+    socketRef.current.emit('newMessage', message, (acknowledge) => {
+        if (acknowledge.status === 'ok') resetForm();
+      });
       setMessageSendStatus('sent');
     // if (socketRef.current.connected) {
     //   socketRef.current.emit('newMessage', message);
@@ -46,9 +47,8 @@ const InputForm = ({ socket }) => {
     initialValues: {
       body: '',
     },
-    onSubmit: (values) => {
-      onSubmit(values);
-      formik.resetForm();
+    onSubmit: (values, props) => {
+      onSubmit(values, props);
     }
   });
 
