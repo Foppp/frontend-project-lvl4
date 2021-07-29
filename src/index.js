@@ -19,7 +19,10 @@ const init = () => {
       <App />
     </Provider>
   );
+  if (document.getElementById('chat')) {
+    render(vdom, document.getElementById('chat'))
+  }
   return vdom;
-}
-
+};
+init()
 export default init;
