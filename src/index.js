@@ -13,9 +13,6 @@ import { initReactI18next, I18nextProvider } from 'react-i18next';
 import * as Yup from 'yup';
 import resources from './locales/index.js';
 
-
-
-
 const init = () => {
   if (process.env.NODE_ENV !== 'production') {
     localStorage.debug = 'chat:*';
