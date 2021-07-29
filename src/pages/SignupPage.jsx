@@ -21,41 +21,25 @@ const SignupPage = () => {
   const location = useLocation();
   const auth = useAuth();
 
-  // const handleSubmit = async (data) => {
-  //   setSignupStatus('pending')
-  //   try {
-  //     const response = await axios.post('/api/v1/signup', data);
-  //     localStorage.setItem('userId', JSON.stringify(response.data));
-  //     auth.logIn();
-  //     const { from } = location.state || { from: { pathname: '/' } };
-  //     history.replace(from);
-  //     setSignupStatus('fullfiled');
-  //   } catch (e) {
-  //     setSignupStatus('rejected');
-  //     if (e.response.status === 409) {
-  //       setSignupError(t('errors.userExist'));
-  //       return;
-  //     }
-  //       setSignupError('errors.unknown');
-  //   }
-  // };
-  const handleSubmit = (data) => {
+  const handleSubmit = async (data) => {
     setSignupStatus('pending')
-      axios.post('/api/v1/signup', data).then((response) => {
+    try {
+      const response = await axios.post('/api/v1/signup', data);
       localStorage.setItem('userId', JSON.stringify(response.data));
       auth.logIn();
       const { from } = location.state || { from: { pathname: '/' } };
       history.replace(from);
       setSignupStatus('fullfiled');
-      }).catch((e) => {
-              setSignupStatus('rejected');
+    } catch (e) {
+      setSignupStatus('rejected');
       if (e.response.status === 409) {
         setSignupError(t('errors.userExist'));
         return;
       }
         setSignupError('errors.unknown');
-      })
+    }
   };
+
   const formik = useFormik({
     initialValues: {
       username: '',
