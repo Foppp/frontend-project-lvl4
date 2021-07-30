@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useFormik } from 'formik';
 import _ from 'lodash';
 import { useSelector, useDispatch } from 'react-redux';
@@ -13,9 +13,9 @@ const InputForm = ({ socket }) => {
   const inputFocus = useRef(null);
   const socketRef = useRef();
   const dispatch = useDispatch();
-  const [messageSendStatus, setMessageSendStatus] = useState(null);
+  // const [messageSendStatus, setMessageSendStatus] = useState(null);
 
-  useEffect(() => inputFocus.current.focus(), [channelId, messages, messageSendStatus]);
+  useEffect(() => inputFocus.current.focus(), [channelId, messages]);
 
   useEffect(() => {
     socketRef.current = socket;
@@ -25,7 +25,7 @@ const InputForm = ({ socket }) => {
   }, [dispatch, socket]);
 
   const onSubmit = async ({ body }, { resetForm }) => {
-    setMessageSendStatus('sending');
+    // setMessageSendStatus('sending');
     const userId = getUserId();
     const { username } = userId;
     const id = _.uniqueId();
@@ -35,7 +35,7 @@ const InputForm = ({ socket }) => {
     socketRef.current.emit('newMessage', message, (acknowledge) => {
       if (acknowledge.status === 'ok') resetForm();
     });
-    setMessageSendStatus('sent');
+    // setMessageSendStatus('sent');
   };
 
   const formik = useFormik({
@@ -60,7 +60,7 @@ const InputForm = ({ socket }) => {
             className="border-0 p-0 ps-2 form-control"
             onChange={formik.handleChange}
             value={formik.values.body}
-            disabled={messageSendStatus === 'sending'}
+            disabled={formik.isSubmitting}
           />
           <div className="input-group-append">
             <button type="submit" className="btn btn-group-vertical" disabled={!formik.values.body}>
