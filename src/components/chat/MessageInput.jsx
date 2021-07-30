@@ -3,7 +3,7 @@ import { useFormik } from 'formik';
 import _ from 'lodash';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { getUserId } from '../../redux/user.js';
+import { getUserId } from '../../auth/init.js';
 import { addMessage } from '../../redux/masseges.js';
 
 const InputForm = ({ socket }) => {
