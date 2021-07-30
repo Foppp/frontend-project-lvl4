@@ -6,6 +6,7 @@ const MessagesBody = () => {
   const messages = useSelector((state) => state.messagesInfoReducer.messages);
   const currentChannelId = useSelector((state) => state.channelsInfoReducer.currentChannelId);
   const currentChannelMessages = messages.filter(({ channelId }) => channelId === currentChannelId);
+  const space = ': ';
 
   useEffect(() => {
     const messageBox = messageBoxRef.current;
@@ -17,7 +18,7 @@ const MessagesBody = () => {
       {currentChannelMessages.map(({ body, id, username }) => (
         <div key={id} className="text-break mb-2">
           <b>{username}</b>
-          :
+          {space}
           {body}
         </div>
       ))}
