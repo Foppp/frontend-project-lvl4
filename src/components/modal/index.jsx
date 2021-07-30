@@ -27,6 +27,7 @@ const Modal = ({ socket }) => {
 
   useEffect(() => {
     socketRef.current = socket;
+    socketRef.current.on('connect', () => console.log('ok'));
     socketRef.current.on('newChannel', (channel) => {
       dispatch(setCurrentChannel(channel.id));
       dispatch(addChannel(channel));
