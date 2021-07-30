@@ -8,7 +8,7 @@ import { Provider as RollbarProvider, ErrorBoundary } from '@rollbar/react';
 import App from './App.jsx';
 import store from './redux/store.js';
 import initLoclale from './utils/i18n.js';
-import rollbarConfig from './rollbar/rollbar.js';
+import rollbarConfig from './rollbar/rollbar';
 
 const init = (socket) => {
   if (process.env.NODE_ENV !== 'production') {
