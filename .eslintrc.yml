@@ -2,7 +2,9 @@ env:
   browser: true
   es2021: true
   node: true
-extends: 'plugin:react/recommended'
+extends:
+  - 'plugin:react/recommended'
+  - 'airbnb-base'
 parserOptions:
   ecmaFeatures:
     jsx: true
@@ -12,3 +14,6 @@ plugins:
   - react
 rules:
   react/prop-types: 0
+  import/extensions: 0
+  import/no-unresolved: 0
+  no-console: 0

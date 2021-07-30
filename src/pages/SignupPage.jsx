@@ -4,9 +4,9 @@ import { useFormik } from 'formik';
 import { useLocation, useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import _ from 'lodash';
-import useAuth from '../hooks/index';
 import * as Yup from 'yup';
 import cn from 'classnames';
+import useAuth from '../hooks/index';
 import Hexlet from '../images/hexlet.png';
 
 const SignupPage = () => {
@@ -15,14 +15,14 @@ const SignupPage = () => {
 
   useEffect(() => inputFocus.current.focus(), []);
 
-  const [signupStatus, setSignupStatus] = useState(null)
+  const [signupStatus, setSignupStatus] = useState(null);
   const [signupError, setSignupError] = useState(false);
   const history = useHistory();
   const location = useLocation();
   const auth = useAuth();
 
   const handleSubmit = async (data) => {
-    setSignupStatus('pending')
+    setSignupStatus('pending');
     try {
       const response = await axios.post('/api/v1/signup', data);
       localStorage.setItem('userId', JSON.stringify(response.data));
@@ -36,7 +36,7 @@ const SignupPage = () => {
         setSignupError(t('errors.userExist'));
         return;
       }
-        setSignupError('errors.unknown');
+      setSignupError('errors.unknown');
     }
   };
 
@@ -58,7 +58,7 @@ const SignupPage = () => {
         .required()
         .min(6),
       confirmPassword: Yup.string()
-        .oneOf([Yup.ref('password'), null])
+        .oneOf([Yup.ref('password'), null]),
     }),
   });
 
@@ -149,6 +149,6 @@ const SignupPage = () => {
       </div>
     </div>
   );
-}
+};
 
 export default SignupPage;

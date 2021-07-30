@@ -24,7 +24,9 @@
 //         notOneOf: () => i18n.t('errors.channelExist')
 //       },
 //       string: {
-//         min: ({ path }) => path === 'password' ? i18n.t('errors.minCharactersPass') : i18n.t('errors.minCharacters'),
+//         min: ({ path }) => path === 'password'
+//           ?i18n.t('errors.minCharactersPass')
+//           : i18n.t('errors.minCharacters'),
 //         max: () => i18n.t('errors.maxCharacters'),
 //       },
 //     })

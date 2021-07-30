@@ -4,18 +4,16 @@ import _ from 'lodash';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { getUserId } from '../redux/user.js';
-// import io from 'socket.io-client';
 import { addMessage } from '../redux/masseges.js';
 
 const InputForm = ({ socket }) => {
   const { t } = useTranslation();
-  const messages = useSelector((state) => state.messagesInfo.messages);
-  const channels = useSelector((state) => state.channelsInfo.channels);
-  const channelId = useSelector((state) => state.channelsInfo.currentChannelId);
+  const messages = useSelector((state) => state.messagesInfoReducer.messages);
+  const channelId = useSelector((state) => state.channelsInfoReducer.currentChannelId);
   const inputFocus = useRef(null);
   const socketRef = useRef();
   const dispatch = useDispatch();
-  const [ messageSendStatus, setMessageSendStatus ] = useState(null);
+  const [messageSendStatus, setMessageSendStatus] = useState(null);
 
   useEffect(() => inputFocus.current.focus(), [channelId, messages, messageSendStatus]);
 
@@ -23,24 +21,21 @@ const InputForm = ({ socket }) => {
     socketRef.current = socket;
     socketRef.current.on('newMessage', (message) => {
       dispatch(addMessage(message));
-    })
+    });
   }, [socketRef]);
 
   const onSubmit = async ({ body }, { resetForm }) => {
     setMessageSendStatus('sending');
     const userId = getUserId();
-    const username = userId.username;
+    const { username } = userId;
     const id = _.uniqueId();
-    const message = { id, body, username, channelId };
+    const message = {
+      id, body, username, channelId,
+    };
     socketRef.current.emit('newMessage', message, (acknowledge) => {
-        if (acknowledge.status === 'ok') resetForm();
-      });
-      setMessageSendStatus('sent');
-    // if (socketRef.current.connected) {
-    //   socketRef.current.emit('newMessage', message);
-    //   setMessageSendStatus('sent');
-    // }
-    // setTimeout(() => setMessageSendStatus('failed'), 2000)
+      if (acknowledge.status === 'ok') resetForm();
+    });
+    setMessageSendStatus('sent');
   };
 
   const formik = useFormik({
@@ -49,7 +44,7 @@ const InputForm = ({ socket }) => {
     },
     onSubmit: (values, props) => {
       onSubmit(values, props);
-    }
+    },
   });
 
   return (
@@ -77,6 +72,6 @@ const InputForm = ({ socket }) => {
       </form>
     </div>
   );
-}
+};
 
 export default InputForm;

@@ -31,8 +31,8 @@ export default {
       messageInput: 'Type text here...',
       messageSend: 'Send',
       messagesCount: {
-        "keyWithCount": "{{count}} message",
-        "keyWithCount_plural": "{{count}} messages"
+        keyWithCount: '{{count}} message',
+        keyWithCount_plural: '{{count}} messages',
       },
     },
     channels: {
@@ -44,7 +44,7 @@ export default {
         renameChannel: 'Rename Channel',
         removeChannel: 'Remove Channel',
         confirmRemove: 'Are you sure ?',
-      }
+      },
     },
     errors: {
       userExist: 'This username already exist',

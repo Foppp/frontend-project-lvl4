@@ -1,16 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
-import axios from 'axios';
-import { getAuthHeader } from "./user.js";
-
-export const fetchChatData = () => async (dispatch) => {
-  const headers = getAuthHeader();
-  try {
-    const response = await axios.get('/api/v1/data', { headers });
-    dispatch(setInitialState(response.data))
-  } catch (err) {
-    return err;
-  }
-};
+/* eslint-disable no-param-reassign */
+import { createSlice } from '@reduxjs/toolkit';
 
 export const channelsInfo = createSlice({
   name: 'channels',
@@ -30,14 +19,14 @@ export const channelsInfo = createSlice({
       state.channels = [...state.channels, action.payload];
     },
     removeChannel: (state, action) => {
-      state.channels = state.channels.filter((ch) => ch.id !== action.payload.id)
+      state.channels = state.channels.filter((ch) => ch.id !== action.payload.id);
     },
     renameChannel: (state, action) => {
       const newName = action.payload.name;
-      state.channels = state.channels.map((ch) => (ch.id === action.payload.id)
-        ? ({ ...ch, name: newName }) : ch, [])
-    }
-  }
+      state.channels = state.channels.map((ch) => ((ch.id === action.payload.id)
+        ? ({ ...ch, name: newName }) : ch), []);
+    },
+  },
 });
 
 export const {
@@ -45,6 +34,7 @@ export const {
   setCurrentChannel,
   addChannel,
   removeChannel,
-  renameChannel
+  renameChannel,
 } = channelsInfo.actions;
+
 export default channelsInfo.reducer;

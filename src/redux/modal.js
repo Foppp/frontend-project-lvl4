@@ -1,5 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { addChannel, removeChannel, renameChannel } from "./channels.js";
+/* eslint-disable no-param-reassign */
+import { createSlice } from '@reduxjs/toolkit';
+import { addChannel, removeChannel, renameChannel } from './channels.js';
 
 const modal = createSlice({
   name: 'modal',
@@ -20,7 +21,7 @@ const modal = createSlice({
       state.isOpened = false;
       state.type = null;
       state.extra = null;
-    }
+    },
   },
   extraReducers: {
     [addChannel]: (state) => {
@@ -37,8 +38,8 @@ const modal = createSlice({
       state.isOpened = false;
       state.type = null;
       state.extra = null;
-    }
-  }
+    },
+  },
 });
 
 export const { openModal, closeModal } = modal.actions;

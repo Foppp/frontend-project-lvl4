@@ -2,24 +2,24 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import cn from 'classnames';
-import { setCurrentChannel } from '../redux/channels';
-import { openModal, closeModal } from '../redux/modal';
+import { setCurrentChannel } from '../redux/channels.js';
+import { openModal } from '../redux/modal.js';
 
 const Channels = () => {
   const { t } = useTranslation();
-  const channels = useSelector((state) => state.channelsInfo.channels);
-  const currentChannelId = useSelector((state) => state.channelsInfo.currentChannelId);
+  const channels = useSelector((state) => state.channelsInfoReducer.channels);
+  const currentChannelId = useSelector((state) => state.channelsInfoReducer.currentChannelId);
   const [activeDropDown, setActiveDropDown] = useState(null);
   const dispatch = useDispatch();
 
   const handleSetCurrentChannel = (id) => () => {
     dispatch(setCurrentChannel(id));
-    setActiveDropDown(null)
+    setActiveDropDown(null);
   };
 
   const handleOpenModal = (type, channelId = null) => () => {
     dispatch(openModal({ type, channelId }));
-    setActiveDropDown(null)
+    setActiveDropDown(null);
   };
 
   const handleDropDown = (id) => {
@@ -37,7 +37,6 @@ const Channels = () => {
       </div>
       <ul className="nav flex-column nav-pills nav-fill px-2">
         {channels.map(({ id, name, removable }) => {
-          
           const classUnremovable = cn({
             'w-100 rounded-start text-start text-truncate btn': true,
             'btn-secondary': id === currentChannelId,
@@ -49,7 +48,7 @@ const Channels = () => {
           });
 
           const classDropDown = cn({
-            "dropdown-menu mt-5 ms-5": true,
+            'dropdown-menu mt-5 ms-5': true,
             show: activeDropDown === id,
           });
 
@@ -85,7 +84,7 @@ const Channels = () => {
                 )}
               </div>
             </li>
-          )
+          );
         })}
       </ul>
     </div>

@@ -1,7 +1,6 @@
-import axios from 'axios';
 import React, { useEffect } from 'react';
-import { fetchChatData } from '../redux/channels.js';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { fetchChatData } from '../redux/user.js';
 import InputForm from '../components/InputForm';
 import Channels from '../components/Channels';
 import MessagesHead from '../components/MessagesHead';
@@ -10,12 +9,11 @@ import ModalComponent from '../components/modal/index.js';
 
 const HomePage = ({ socket }) => {
   const dispatch = useDispatch();
-  const modalType = useSelector((state) => state.modal.type);
-  
+
   useEffect(() => {
     dispatch(fetchChatData());
-  }, [])
-  
+  }, []);
+
   return (
     <div className="container h-100 my-4 overflow-hidden rounded shadow">
       <div className="row h-100 bg-white flex-md-row">
@@ -30,7 +28,7 @@ const HomePage = ({ socket }) => {
         </div>
       </div>
     </div>
-  )
+  );
 };
 
 export default HomePage;

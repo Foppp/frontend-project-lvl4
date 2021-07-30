@@ -1,12 +1,12 @@
-import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
-import channelsInfo from "./channels.js";
-import messagesInfo from "./masseges.js";
-import modal from "./modal.js";
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import channelsInfoReducer from './channels.js';
+import messagesInfoReducer from './masseges.js';
+import modal from './modal.js';
 
 export default configureStore({
   reducer: {
-    channelsInfo,
-    messagesInfo,
+    channelsInfoReducer,
+    messagesInfoReducer,
     modal,
   },
   middleware: getDefaultMiddleware(),

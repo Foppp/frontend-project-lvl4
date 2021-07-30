@@ -1,12 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useState, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useHistory } from 'react-router-dom';
 import { useFormik } from 'formik';
-import { useLocation, useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import useAuth from '../hooks/index';
 import * as Yup from 'yup';
 import cn from 'classnames';
+import useAuth from '../hooks/index';
 import Hexlet from '../images/hexlet.png';
 
 const LoginPage = () => {
@@ -15,14 +14,14 @@ const LoginPage = () => {
 
   useEffect(() => inputFocus.current.focus(), []);
 
-  const [loginStatus, setLoginStatus] = useState(null)
+  const [loginStatus, setLoginStatus] = useState(null);
   const [error, setError] = useState(false);
   const history = useHistory();
   const location = useLocation();
   const auth = useAuth();
 
   const handleSubmit = async (data) => {
-    setLoginStatus('pending')
+    setLoginStatus('pending');
     try {
       const response = await axios.post('/api/v1/login', data);
       localStorage.setItem('userId', JSON.stringify(response.data));
@@ -31,7 +30,7 @@ const LoginPage = () => {
       history.replace(from);
       setLoginStatus('fullfiled');
     } catch (e) {
-      setError(true)
+      setError(true);
       setLoginStatus('rejected');
     }
   };
@@ -41,14 +40,14 @@ const LoginPage = () => {
       username: '',
       password: '',
     },
-    onSubmit: values => {
+    onSubmit: (values) => {
       handleSubmit(values);
     },
     validationSchema: Yup.object().shape({
-    username: Yup.string()
-      .required(),
-    password: Yup.string()
-      .required(),
+      username: Yup.string()
+        .required(),
+      password: Yup.string()
+        .required(),
     }),
   });
 
@@ -116,6 +115,6 @@ const LoginPage = () => {
       </div>
     </div>
   );
-}
+};
 
 export default LoginPage;

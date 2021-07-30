@@ -12,7 +12,7 @@ export default {
       },
     },
     navBar: {
-      logoText: 'Хекслет Чат',
+      logoText: 'Hexlet Chat',
     },
     logIn: {
       title: 'Войти',
@@ -31,9 +31,9 @@ export default {
       messageInput: 'Введите сообщение тут...',
       messageSend: 'Отправить',
       messagesCount: {
-        "keyWithCount_0": "{{count}} сообщениe",
-        "keyWithCount_1": "{{count}} сообщения",
-        "keyWithCount_2": "{{count}} сообщений"
+        keyWithCount_0: '{{count}} сообщениe',
+        keyWithCount_1: '{{count}} сообщения',
+        keyWithCount_2: '{{count}} сообщений',
       },
     },
     channels: {
@@ -45,7 +45,7 @@ export default {
         renameChannel: 'Переименовать Канал',
         removeChannel: 'Удалить Канал',
         confirmRemove: 'Вы уверены ?',
-      }
+      },
     },
     errors: {
       userExist: 'Это имя пользователя уже существует',

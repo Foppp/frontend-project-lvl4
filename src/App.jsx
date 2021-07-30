@@ -1,12 +1,10 @@
-import React, { useContext, useState, useEffect } from 'react';
-// import { useTranslation, initReactI18next, I18nextProvider } from 'react-i18next';
+import React, { useState } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
   Redirect,
-} from "react-router-dom";
+} from 'react-router-dom';
 import NavPanel from './components/NavPanel';
 import Login from './pages/LoginPage';
 import HomePage from './pages/HomePage';
@@ -14,12 +12,10 @@ import SignupPage from './pages/SignupPage';
 import PageNotFound from './pages/PageNotFound';
 import useAuth from './hooks/index';
 import authContext from './contexts/index';
-import i18n from './utils/i18n';
-
 
 const AuthProvider = ({ children }) => {
   const loggedInUser = localStorage.getItem('userId');
-  const [loggedIn, setLoggedIn] = useState(loggedInUser ? true: false);
+  const [loggedIn, setLoggedIn] = useState(!!loggedInUser);
   const logIn = () => setLoggedIn(true);
   const logOut = () => {
     localStorage.removeItem('userId');
@@ -42,17 +38,16 @@ const PrivateRoute = ({ children, path }) => {
         : <Redirect to={{ pathname: '/login', state: { from: location } }} />)}
     />
   );
-}
+};
 
-const App = ({ socket }) => {
-  return (
-    <div className="d-flex flex-column h-100">
+const App = ({ socket }) => (
+  <div className="d-flex flex-column h-100">
     <AuthProvider>
       <Router>
         <NavPanel />
         <Switch>
           <PrivateRoute exact path="/">
-              <HomePage socket={socket}/>
+            <HomePage socket={socket}/>
           </PrivateRoute>
           <Route path="/login">
             <Login />
@@ -65,9 +60,8 @@ const App = ({ socket }) => {
           </Route>
         </Switch>
       </Router>
-        </AuthProvider>
+    </AuthProvider>
   </div>
 );
-}
 
 export default App;

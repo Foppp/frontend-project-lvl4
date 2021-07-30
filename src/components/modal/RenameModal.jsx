@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import { useFormik } from 'formik';
-import { Modal, Button, Form, ModalFooter } from 'react-bootstrap';
+import {
+  Modal, Button, Form,
+} from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import * as Yup from 'yup';
 import { useSelector } from 'react-redux';
@@ -8,13 +10,13 @@ import { useSelector } from 'react-redux';
 const Rename = ({ renameChannel, closeModal }) => {
   const { t } = useTranslation();
   const isOpened = useSelector((state) => state.modal.isOpened);
-  const channels = useSelector((state) => state.channelsInfo.channels);
+  const channels = useSelector((state) => state.channelsInforeducer.channels);
   const modalChannelId = useSelector((state) => state.modal.extra.channelId);
   const currentChannelName = channels.find(({ id }) => id === modalChannelId).name;
   const inputRef = useRef();
 
   useEffect(() => inputRef.current.select(), []);
-  
+
   const formik = useFormik({
     initialValues: {
       body: currentChannelName,
@@ -26,10 +28,10 @@ const Rename = ({ renameChannel, closeModal }) => {
       body: Yup.string()
         .min(3)
         .max(20)
-        .notOneOf(channels.map(({name}) => name))
+        .notOneOf(channels.map(({ name }) => name)),
     }),
   });
-  
+
   return (
     <Modal show={isOpened} onHide={closeModal}>
       <Modal.Header>
@@ -60,7 +62,7 @@ const Rename = ({ renameChannel, closeModal }) => {
         </Button>
         <Button variant="primary" type="submit" onClick={formik.handleSubmit}>
           {t('buttons.modal.rename')}
-        </Button>        
+        </Button>
       </Modal.Footer>
     </Modal>
   );

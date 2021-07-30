@@ -1,17 +1,15 @@
 import React, { useEffect, useRef } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { Modal, Button, Form, ModalFooter } from 'react-bootstrap';
-import { useSelector, useDispatch } from 'react-redux';
+import { Modal, Button, Form } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
 const Add = ({ addNewChannel, closeModal }) => {
   const { t } = useTranslation();
   const isOpened = useSelector((state) => state.modal.isOpened);
-  const channels = useSelector((state) => state.channelsInfo.channels);
+  const channels = useSelector((state) => state.channelsInfoReducer.channels);
   const inputRef = useRef(null);
-  const socketRef = useRef(null);
-  const dispatch = useDispatch();
 
   useEffect(() => inputRef.current.focus(), []);
 
@@ -20,16 +18,16 @@ const Add = ({ addNewChannel, closeModal }) => {
       body: '',
     },
     onSubmit: ({ body }) => {
-      addNewChannel(body)
+      addNewChannel(body);
     },
     validationSchema: Yup.object().shape({
       body: Yup.string()
         .min(3)
         .max(20)
-        .notOneOf(channels.map(({name}) => name))
+        .notOneOf(channels.map(({ name }) => name)),
     }),
   });
-  
+
   return (
     <Modal show={isOpened} onHide={closeModal}>
       <Modal.Header>
@@ -60,7 +58,7 @@ const Add = ({ addNewChannel, closeModal }) => {
         </Button>
         <Button variant="primary" type="submit" onClick={formik.handleSubmit}>
           {t('buttons.modal.add')}
-        </Button>        
+        </Button>
       </Modal.Footer>
     </Modal>
   );

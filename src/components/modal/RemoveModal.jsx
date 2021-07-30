@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Button, ModalFooter } from 'react-bootstrap';
+import { Modal, Button } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
@@ -7,7 +7,7 @@ const Remove = ({ removeChannel, closeModal }) => {
   const { t } = useTranslation();
   const isOpened = useSelector((state) => state.modal.isOpened);
   const modalChannelId = useSelector((state) => state.modal.extra.channelId);
-  
+
   return (
     <Modal show={isOpened} onHide={closeModal}>
       <Modal.Header>
@@ -23,7 +23,7 @@ const Remove = ({ removeChannel, closeModal }) => {
         </Button>
         <Button variant="danger" type="submit" onClick={removeChannel(modalChannelId)}>
           {t('buttons.modal.remove')}
-        </Button>        
+        </Button>
       </Modal.Footer>
     </Modal>
   );
