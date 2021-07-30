@@ -20,7 +20,7 @@ const MessagesBody = () => {
         </div>
       ))}
       <div ref={divRef} />
-    </div >
+    </div>
   );
 };
 

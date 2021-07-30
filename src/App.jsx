@@ -47,7 +47,7 @@ const App = ({ socket }) => (
         <NavPanel />
         <Switch>
           <PrivateRoute exact path="/">
-            <HomePage socket={socket}/>
+            <HomePage socket={socket} />
           </PrivateRoute>
           <Route path="/login">
             <Login />

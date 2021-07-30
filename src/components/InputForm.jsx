@@ -22,7 +22,7 @@ const InputForm = ({ socket }) => {
     socketRef.current.on('newMessage', (message) => {
       dispatch(addMessage(message));
     });
-  }, [dispatch, socketRef]);
+  }, [dispatch, socket]);
 
   const onSubmit = async ({ body }, { resetForm }) => {
     setMessageSendStatus('sending');
