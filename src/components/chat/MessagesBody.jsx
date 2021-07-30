@@ -11,6 +11,7 @@ const MessagesBody = () => {
     const messageBox = messageBoxRef.current;
     messageBox.scrollTop = messageBox.scrollHeight;
   });
+
   return (
     <div id="messages-box" ref={messageBoxRef} className="chat-messages overflow-auto px-5 ">
       {currentChannelMessages.map(({ body, id, username }) => (
