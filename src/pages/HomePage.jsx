@@ -5,7 +5,7 @@ import InputForm from '../components/InputForm';
 import Channels from '../components/Channels';
 import MessagesHead from '../components/MessagesHead';
 import MessagesBody from '../components/MessagesBody';
-import ModalComponent from '../components/modal/index.js';
+import ModalComponent from '../components/modal/index.jsx';
 
 const HomePage = ({ socket }) => {
   const dispatch = useDispatch();

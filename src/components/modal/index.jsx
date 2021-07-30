@@ -64,13 +64,15 @@ const Modal = ({ socket }) => {
 
   return (
     <>
-      {modalType && (<Component
+      {modalType && (
+        <Component
         isOpened={isOpened}
         addNewChannel={handleAddChannel}
         renameChannel={handleRenameChannel}
         removeChannel={handleRemoveChannel}
         closeModal={handleCloseModal}
-      />)}
+        />
+      )}
     </>
   );
 };
