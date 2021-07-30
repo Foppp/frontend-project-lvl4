@@ -1,6 +1,8 @@
 [![Actions Status](https://github.com/Foppp/frontend-project-lvl4/workflows/hexlet-check/badge.svg)](https://github.com/Foppp/frontend-project-lvl4/actions)
 
-# React and Redux Toolkit - Slack Chat App -
+# Slack Chat App with React and Redux Toolkit 
+
+## Main language RU (and optional EN)
 #### (simple version)
 
 
