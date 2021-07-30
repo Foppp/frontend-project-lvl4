@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
-import { getAuthHeader } from '../auth/init.js';
+import { getAuthHeader } from '../auth/index.js';
 import { setInitialState } from '../redux/channels.js';
 import InputForm from '../components/chat/MessageInput';
 import Channels from '../components/chat/Channels';
