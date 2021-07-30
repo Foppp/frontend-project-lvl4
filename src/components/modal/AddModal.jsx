@@ -32,7 +32,7 @@ const Add = ({ addNewChannel, closeModal }) => {
     <Modal show={isOpened} onHide={closeModal}>
       <Modal.Header>
         <Modal.Title>{t('channels.modal.addChannel')}</Modal.Title>
-        <Button variant="close" onClick={closeModal}></Button>
+        <Button variant="close" onClick={closeModal} />
       </Modal.Header>
       <Modal.Body>
         <Form>

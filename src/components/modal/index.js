@@ -37,7 +37,7 @@ const Modal = ({ socket }) => {
     socketRef.current.on('renameChannel', ({ id, name }) => {
       dispatch(renameChannel({ id, name }));
     });
-  }, []);
+  }, [dispatch, socketRef]);
 
   const handleCloseModal = () => {
     dispatch(closeModal());
@@ -64,13 +64,13 @@ const Modal = ({ socket }) => {
 
   return (
     <>
-      {modalType && <Component
+      {modalType && (<Component
         isOpened={isOpened}
         addNewChannel={handleAddChannel}
         renameChannel={handleRenameChannel}
         removeChannel={handleRemoveChannel}
         closeModal={handleCloseModal}
-      />}
+      />)}
     </>
   );
 };

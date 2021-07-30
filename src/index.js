@@ -43,12 +43,13 @@ const init = (socket) => {
       },
     }));
   const vdom = (
-        <Provider store={store}>
-          <I18nextProvider i18n={i18n}>
-            <App socket={socket}/>
-          </I18nextProvider>
-        </Provider>
+    <Provider store={store}>
+      <I18nextProvider i18n={i18n}>
+        <App socket={socket} />
+      </I18nextProvider>
+    </Provider>
   );
+
   if (document.getElementById('chat')) {
     render(vdom, document.getElementById('chat'));
   }

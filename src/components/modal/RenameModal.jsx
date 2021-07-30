@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux';
 const Rename = ({ renameChannel, closeModal }) => {
   const { t } = useTranslation();
   const isOpened = useSelector((state) => state.modal.isOpened);
-  const channels = useSelector((state) => state.channelsInforeducer.channels);
+  const channels = useSelector((state) => state.channelsInfoReducer.channels);
   const modalChannelId = useSelector((state) => state.modal.extra.channelId);
   const currentChannelName = channels.find(({ id }) => id === modalChannelId).name;
   const inputRef = useRef();
@@ -36,7 +36,7 @@ const Rename = ({ renameChannel, closeModal }) => {
     <Modal show={isOpened} onHide={closeModal}>
       <Modal.Header>
         <Modal.Title>{t('channels.modal.renameChannel')}</Modal.Title>
-        <Button variant="close" onClick={closeModal}></Button>
+        <Button variant="close" onClick={closeModal} />
       </Modal.Header>
       <Modal.Body>
         <Form>

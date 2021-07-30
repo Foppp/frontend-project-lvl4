@@ -12,7 +12,7 @@ const HomePage = ({ socket }) => {
 
   useEffect(() => {
     dispatch(fetchChatData());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="container h-100 my-4 overflow-hidden rounded shadow">
@@ -22,8 +22,8 @@ const HomePage = ({ socket }) => {
           <div className="d-flex flex-column h-100">
             <MessagesHead />
             <MessagesBody />
-            <InputForm socket={socket}/>
-            <ModalComponent socket={socket}/>
+            <InputForm socket={socket} />
+            <ModalComponent socket={socket} />
           </div>
         </div>
       </div>

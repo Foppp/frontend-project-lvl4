@@ -63,7 +63,7 @@ const LoginPage = () => {
           <div className="card shadow-sm rounded">
             <div className="card-body row p-5">
               <div className="col-12 col-md-6 d-flex align-items-center justify-content-center">
-                <img src={Hexlet} alt="logo" className="col-12 col-md-10 d-flex w-75"></img>
+                <img src={Hexlet} alt="logo" className="col-12 col-md-10 d-flex w-75" />
               </div>
               <form className="col-12 col-md-6 mt-3 mt-mb-0" onSubmit={formik.handleSubmit}>
                 <h3 className="text-center mb-4">{t('logIn.title')}</h3>
@@ -106,7 +106,9 @@ const LoginPage = () => {
             </div>
             <div className="card-footer p-4">
               <div className="text-center">
-                <span>{t('logIn.noAccount')} </span>
+                <span>
+                  {t('logIn.noAccount')}
+                </span>
                 <Link to="/signup">{t('logIn.register')}</Link>
               </div>
             </div>
