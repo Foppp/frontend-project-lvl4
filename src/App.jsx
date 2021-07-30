@@ -1,44 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect,
 } from 'react-router-dom';
 import NavPanel from './components/chat/NavPanel';
 import Login from './pages/LoginPage';
 import HomePage from './pages/HomePage';
 import SignupPage from './pages/SignupPage';
 import PageNotFound from './pages/PageNotFound';
-import useAuth from './hooks/index';
-import authContext from './contexts/index';
-
-const AuthProvider = ({ children }) => {
-  const loggedInUser = localStorage.getItem('userId');
-  const [loggedIn, setLoggedIn] = useState(!!loggedInUser);
-  const logIn = () => setLoggedIn(true);
-  const logOut = () => {
-    localStorage.removeItem('userId');
-    setLoggedIn(false);
-  };
-  return (
-    <authContext.Provider value={{ loggedIn, logIn, logOut }}>
-      {children}
-    </authContext.Provider>
-  );
-};
-
-const PrivateRoute = ({ children, path }) => {
-  const auth = useAuth();
-  return (
-    <Route
-      path={path}
-      render={({ location }) => (auth.loggedIn
-        ? children
-        : <Redirect to={{ pathname: '/login', state: { from: location } }} />)}
-    />
-  );
-};
+import PrivateRoute from './auth/PrivateRoute';
+import AuthProvider from './auth/AuthProvider';
 
 const App = ({ socket }) => (
   <div className="d-flex flex-column h-100">
