@@ -7,8 +7,7 @@
 
 ## [Check Example Here](https://slack-chat-hexlet.herokuapp.com/)
 
-![image info](./images/chatPic.png)
-<img src="./images/chatPic.png">
+![image info](.src/images/chatPic.png)
 ## Install
 
 ```sh
