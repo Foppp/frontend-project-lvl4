@@ -59,7 +59,7 @@ const Channels = () => {
             <li className="nav-item w-100" key={id}>
               <div role="group" className="d-flex dropdown btn-group">
                 <button
-                  role="button"
+                  type="button"
                   className={classUnremovable}
                   onClick={handleSetCurrentChannel(id)}
                 >
@@ -69,7 +69,7 @@ const Channels = () => {
                 {removable && (
                   <>
                     <button
-                      role="button"
+                      type="button"
                       className={classRemovable}
                       data-bs-toggle="dropdown"
                       aria-expanded="false"
@@ -78,8 +78,8 @@ const Channels = () => {
                       <span className="visually-hidden">Toggle Dropdown</span>
                     </button>
                     <ul className={classDropDown}>
-                      <li><a className="dropdown-item" href="#" onClick={handleOpenModal('renameChannel', id)}>{t('channels.rename')}</a></li>
-                      <li><a className="dropdown-item" href="#" onClick={handleOpenModal('removeChannel', id)}>{t('channels.remove')}</a></li>
+                      <li><button type="button" className="dropdown-item" onClick={handleOpenModal('renameChannel', id)}>{t('channels.rename')}</button></li>
+                      <li><button type="button" className="dropdown-item" onClick={handleOpenModal('removeChannel', id)}>{t('channels.remove')}</button></li>
                     </ul>
                   </>
                 )}
