@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchChatData } from '../redux/user.js';
-import InputForm from '../components/MessageInput';
-import Channels from '../components/Channels';
-import MessagesHead from '../components/MessagesHead';
-import MessagesBody from '../components/MessagesBody';
+import InputForm from '../components/chat/MessageInput';
+import Channels from '../components/chat/Channels';
+import MessagesHead from '../components/chat/MessagesHead';
+import MessagesBody from '../components/chat/MessagesBody';
 import ModalComponent from '../components/modal/index.jsx';
 
 const HomePage = ({ socket }) => {

@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import cn from 'classnames';
-import { setCurrentChannel } from '../redux/channels.js';
-import { openModal } from '../redux/modal.js';
+import { setCurrentChannel } from '../../redux/channels.js';
+import { openModal } from '../../redux/modal.js';
 
 const Channels = () => {
   const { t } = useTranslation();

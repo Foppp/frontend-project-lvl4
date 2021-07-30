@@ -3,8 +3,8 @@ import { useFormik } from 'formik';
 import _ from 'lodash';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { getUserId } from '../redux/user.js';
-import { addMessage } from '../redux/masseges.js';
+import { getUserId } from '../../redux/user.js';
+import { addMessage } from '../../redux/masseges.js';
 
 const InputForm = ({ socket }) => {
   const { t } = useTranslation();

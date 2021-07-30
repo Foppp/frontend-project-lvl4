@@ -2,8 +2,8 @@ import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
-import authContext from '../contexts';
-import Hexlet from '../images/hexlet.png';
+import authContext from '../../contexts';
+import Hexlet from '../../images/hexlet.png';
 
 const NavPanel = () => {
   const { t } = useTranslation();

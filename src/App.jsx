@@ -5,7 +5,7 @@ import {
   Route,
   Redirect,
 } from 'react-router-dom';
-import NavPanel from './components/NavPanel';
+import NavPanel from './components/chat/NavPanel';
 import Login from './pages/LoginPage';
 import HomePage from './pages/HomePage';
 import SignupPage from './pages/SignupPage';

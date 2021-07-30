@@ -1,8 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useFormik } from 'formik';
-import {
-  Modal, Button, Form,
-} from 'react-bootstrap';
+import { Modal, Button, Form } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import * as Yup from 'yup';
 import { useSelector } from 'react-redux';
