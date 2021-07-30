@@ -44,7 +44,9 @@ const Modal = ({ socket }) => {
   };
 
   const handleAddChannel = (body) => {
-    socketRef.current.emit('newChannel', { name: body });
+    socketRef.current.emit('newChannel', { name: body }, (acknowledge) => {
+      if (acknowledge.status === 'ok') console.log('ok');
+    });
   };
 
   const handleRenameChannel = (id, name) => {
