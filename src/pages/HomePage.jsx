@@ -1,11 +1,20 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { fetchChatData } from '../redux/user.js';
+import axios from 'axios';
+import { getAuthHeader } from '../auth/init.js';
+import { setInitialState } from '../redux/channels.js';
 import InputForm from '../components/chat/MessageInput';
 import Channels from '../components/chat/Channels';
 import MessagesHead from '../components/chat/MessagesHead';
 import MessagesBody from '../components/chat/MessagesBody';
 import ModalComponent from '../components/modal/index.jsx';
+
+const fetchChatData = () => async (dispatch) => {
+  const headers = getAuthHeader();
+  axios.get('/api/v1/data', { headers }).then((response) => {
+    dispatch(setInitialState(response.data));
+  }).catch((err) => err);
+};
 
 const HomePage = ({ socket }) => {
   const dispatch = useDispatch();
