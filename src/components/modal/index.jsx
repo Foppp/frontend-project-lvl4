@@ -27,7 +27,6 @@ const Modal = ({ socket }) => {
 
   useEffect(() => {
     socketRef.current = socket;
-    socketRef.current.on('connect', () => console.log('ok'));
     socketRef.current.on('newChannel', (channel) => {
       dispatch(setCurrentChannel(channel.id));
       dispatch(addChannel(channel));
@@ -63,11 +62,11 @@ const Modal = ({ socket }) => {
     <>
       {modalType && (
         <Component
-        isOpened={isOpened}
-        addNewChannel={handleAddChannel}
-        renameChannel={handleRenameChannel}
-        removeChannel={handleRemoveChannel}
-        closeModal={handleCloseModal}
+          isOpened={isOpened}
+          addNewChannel={handleAddChannel}
+          renameChannel={handleRenameChannel}
+          removeChannel={handleRemoveChannel}
+          closeModal={handleCloseModal}
         />
       )}
     </>
