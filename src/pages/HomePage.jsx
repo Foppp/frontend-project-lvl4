@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchChatData } from '../redux/user.js';
-import InputForm from '../components/InputForm';
+import InputForm from '../components/MessageInput';
 import Channels from '../components/Channels';
 import MessagesHead from '../components/MessagesHead';
 import MessagesBody from '../components/MessagesBody';

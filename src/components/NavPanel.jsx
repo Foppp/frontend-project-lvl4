@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import authContext from '../contexts';
 import Hexlet from '../images/hexlet.png';
-// import LogoutButton from './LogoutButton';
 
 const NavPanel = () => {
   const { t } = useTranslation();
