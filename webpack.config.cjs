@@ -1,6 +1,7 @@
 // @ts-check
 
 const path = require('path');
+// eslint-disable-next-line import/no-extraneous-dependencies
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const mode = process.env.NODE_ENV || 'development';
@@ -42,12 +43,12 @@ module.exports = {
       },
       {
         test: /\.(png|svg|jpe?g|gif)$/,
-        include: /images/,
+        include: /assets/,
         use: [
           {
             loader: 'file-loader',
-          }
-        ]
+          },
+        ],
       },
     ],
   },
