@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import * as Yup from 'yup';
 import cn from 'classnames';
 import useAuth from '../hooks/index';
-import Hexlet from '../images/hexlet.png';
+import Hexlet from '../assets/hexlet.png';
 
 const LoginPage = () => {
   const { t } = useTranslation();

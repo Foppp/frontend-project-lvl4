@@ -7,7 +7,7 @@ import _ from 'lodash';
 import * as Yup from 'yup';
 import cn from 'classnames';
 import useAuth from '../hooks/index';
-import Hexlet from '../images/hexlet.png';
+import Hexlet from '../assets/hexlet.png';
 
 const SignupPage = () => {
   const { t } = useTranslation();
