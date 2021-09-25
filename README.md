@@ -1,9 +1,11 @@
 [![Actions Status](https://github.com/Foppp/frontend-project-lvl4/workflows/hexlet-check/badge.svg)](https://github.com/Foppp/frontend-project-lvl4/actions)
 
-# Slack Chat App (simple version)
-## Main language RU (EN optional)
+# Slack Chat App
+## Analogue of Slack chat (Simplified version). The main task is to learn how to write components in React, organize work with state through Redux, configure web sockets, client routing, authorization and authentication.
 
-* ### React and Redux Toolkit 
+#### Main language RU (EN optional)
+
+* React and Redux Toolkit 
 * Interaction with the server via REST API
 * JWT authorization / authentication
 * Real time messaging over websocket (socket.io)
@@ -15,6 +17,7 @@
 * Using react-bootstrap library
 * Build Webpack
 * Deploy Heroku
+
 ## [Check Example Here](https://slack-chat-hexlet.herokuapp.com/)
 
 [![image info](./src/assets/chatPic.png)](https://slack-chat-hexlet.herokuapp.com/)
