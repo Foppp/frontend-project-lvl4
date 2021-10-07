@@ -15,6 +15,7 @@
 * Validation (Yup, Formik)
 * Using i18-next to organize texts, locales
 * Using react-bootstrap library
+* NPM, Babel, ESlint
 * Build Webpack
 * Deploy Heroku
 
